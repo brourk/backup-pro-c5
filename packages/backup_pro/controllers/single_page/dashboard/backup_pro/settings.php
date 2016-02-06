@@ -8,6 +8,8 @@ class Settings extends DashboardPageController
     public function view()
     {
         $this->set('message', __FILE__);
+        //$this->set('title', __FILE__);
+        
     
     }
 }
