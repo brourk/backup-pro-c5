@@ -27,20 +27,46 @@ use \Concrete\Core\Page\Single as SinglePage;
 class Controller extends Package
 {
 
+    /**
+     * Shortname for the package
+     * @var string
+     */
     protected $pkgHandle = 'backup_pro';
+    
+    /**
+     * Minimum version of Concrete5 Backuop Pro supports
+     * @var string
+     */
     protected $appVersionRequired = '5.7.4.3b1';
+    
+    /**
+     * Versoin of Backup Pro 
+     * @var string
+     */
     protected $pkgVersion = '1.0';
 
+    /**
+     * (non-PHPdoc)
+     * @see \Concrete\Core\Package\Package::getPackageDescription()
+     */
     public function getPackageDescription()
     {
         return t('Adds a searchable file library to a page.');
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \Concrete\Core\Package\Package::getPackageName()
+     */
     public function getPackageName()
     {
         return t('Backup Pro');
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \Concrete\Core\Package\Package::install()
+     */
     public function install()
     {
         if (version_compare(phpversion(), '5.4.0', '<')) {
@@ -64,15 +90,27 @@ class Controller extends Package
         
     }
     
+    /**
+     * (non-PHPdoc)
+     * @see \Concrete\Core\Package\Package::upgrade()
+     */
     public function upgrade() {
         parent::upgrade();
     }
     
+    /**
+     * (non-PHPdoc)
+     * @todo add drop settings table
+     * @see \Concrete\Core\Package\Package::uninstall()
+     */
     public function uninstall()
     {
         parent::uninstall();
     } 
     
+    /**
+     * Load up the composer libraries
+     */
     public function on_start()
     {
         require $this->getPackagePath() . '/vendor/autoload.php';

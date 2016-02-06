@@ -1,14 +1,32 @@
 <?php
+/**
+ * mithra62 - Backup Pro for Concrete5
+ *
+ * @author		Eric Lamb <eric@mithra62.com>
+ * @copyright	Copyright (c) 2016, mithra62, Eric Lamb.
+ * @link		http://mithra62.com/
+ * @version		3.0
+ * @filesource 	./packages/backup_pro/controllers/single_page/dashboard/backup_pro/settings.php
+ */
+ 
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;
 
 use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
 
+/**
+ * mithra62 - Concrete5 Package Settings Controller
+ *
+ * Contains all the controller actions for configuring Backup Pro 
+ *
+ * @package Concrete5
+ * @author Eric Lamb <eric@mithra62.com>
+ */
 class Settings extends Concrete5Admin
 {
     /**
      * The default Storage form field values
      *
-     * @var unknown
+     * @var array
      */
     public $storage_form_data_defaults = array(
         'storage_location_name' => '',
@@ -18,6 +36,10 @@ class Settings extends Concrete5Admin
         'storage_location_include_prune' => '1'
     );
     
+    /**
+     * Default view
+     * @param string $section The settings section we're working on
+     */
     public function view($section = 'general')
     {
         $section = $this->platform->getPost('section', 'general');
