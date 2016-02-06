@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns="http://www.concrete5.org/doctrine-xml/0.5"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
+
+  <table name="backup_pro_settings">
+    <field name="id" type="integer" size="10">
+      <unsigned/>
+      <autoincrement/>
+      <key/>
+    </field>
+    <field name="setting_key" type="string" size="60">
+      <notnull/>
+    </field>
+    <field name="setting_value" type="text" >
+      <notnull/>
+    </field>
+    <field name="serialized" type="integer" size="1">
+      <notnull/>
+    </field>
+    <index name="setting_key">
+      <col>setting_key</col>
+    </index>
+  </table>
+</schema>

@@ -1,11 +1,12 @@
 <?php
 /**
- * mithra62
+ * mithra62 - Backup Pro for Concrete5
  *
- * @copyright	Copyright (c) 2015, mithra62, Eric Lamb.
+ * @author		Eric Lamb <eric@mithra62.com>
+ * @copyright	Copyright (c) 2016, mithra62, Eric Lamb.
  * @link		http://mithra62.com/
  * @version		3.0
- * @filesource 	./mithra62/Platforms/Concrete5.php
+ * @filesource 	./packages/backup_pro/controller.php
  */
  
 namespace Concrete\Package\BackupPro;
@@ -15,6 +16,14 @@ defined('C5_EXECUTE') or die('Access Denied.');
 use \Concrete\Core\Package\Package;
 use \Concrete\Core\Page\Single as SinglePage;
 
+/**
+ * mithra62 - Concrete5 Package Controller Object
+ *
+ * Outlines what we're doing
+ *
+ * @package Concrete5
+ * @author Eric Lamb <eric@mithra62.com>
+ */
 class Controller extends Package
 {
 
