@@ -42,7 +42,6 @@ class Settings extends Concrete5Admin
      */
     public function view($section = 'general')
     {
-        $section = $this->platform->getPost('section', 'general');
         $update = $this->platform->getPost('update', 'no');
         $variables = array(
             'form_data' => $this->settings,
@@ -90,6 +89,8 @@ class Settings extends Concrete5Admin
         $variables['errors'] = $this->errors;
         $variables['threshold_options'] = $this->services['settings']->getAutoPruneThresholdOptions();
         $variables['available_db_backup_engines'] = $this->services['backup']->getDataBase()->getAvailableEnginesOptions();
+        
+        $this->prepView('settings', $variables);
     }
    
 }

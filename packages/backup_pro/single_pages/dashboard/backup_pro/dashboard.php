@@ -1,5 +1,7 @@
 <?php include '_includes/_errors.php'; ?>
-<?php $active_tab = 'dashboard'; include '_includes/_dashboard_nav.php'; ?>
+<?php 
+$active_tab = 'dashboard'; 
+include '_includes/_dashboard_nav.php'; ?>
 <?php
 $space_available_header = $view_helper->m62Lang('total_space_available');
 if($settings['auto_threshold'] != '0')
