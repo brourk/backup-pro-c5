@@ -39,20 +39,16 @@ class Dashboard extends Concrete5Admin
             'backups' => $backups,
             'available_space' => $available_space,
             'selected_tab' => 'dashboard',
-            'tab_set' => 'dashboard'
+            'tab_set' => 'dashboard',
+            'pageTitle' => $this->services['lang']->__('dashboard')
         );
         
-        $this->prepView($variables);
-        
-        //$this->set('message', 'My regular message');
-        $this->set('pageTitle', $this->services['lang']->__('dashboard'));
+        $this->prepView('dashboard', $variables);
     
     }
     
     public function db_backups()
     {
-        echo __METHOD__;
-        exit;
         $backup = $this->services['backups'];
         $backups = $backup->setBackupPath($this->settings['working_directory'])->getAllBackups($this->settings['storage_details']);
         $backup_meta = $backup->getBackupMeta($backups);
@@ -62,15 +58,15 @@ class Dashboard extends Concrete5Admin
             'backup_meta' => $backup_meta,
             'backups' => $backups,
             'errors' => $this->errors,
-            'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
+            //'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
             'method' => $this->platform->getPost('method')
-        );        
+        );  
+        
+        $this->prepView('db_backups', $variables);
     }
     
     public function file_backups()
     {
-        echo __METHOD__;
-        exit;
         $backup = $this->services['backups'];
         $backups = $backup->setBackupPath($this->settings['working_directory'])->getAllBackups($this->settings['storage_details']);
         $backup_meta = $backup->getBackupMeta($backups);
@@ -80,17 +76,10 @@ class Dashboard extends Concrete5Admin
             'backup_meta' => $backup_meta,
             'backups' => $backups,
             'errors' => $this->errors,
-            'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
+            //'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
             'method' => $this->platform->getPost('method')
-        );        
-    }
-    
-    public function on_before_render() {
-        $tabs = array();
-        $tabs[] = array('/fdsa', 'Dashboard', true);
-        $tabs[] = array('/fdsa', 'Database Backups', false);
-        $tabs[] = array('/fdsa', 'File Backups', false);
-        $this->set('tabs', $tabs);
-        parent::on_before_render();
-    }    
+        );  
+        
+        $this->prepView('file_backups', $variables);
+    } 
 }

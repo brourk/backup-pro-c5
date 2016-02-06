@@ -1,6 +1,5 @@
 <?php include '_includes/_errors.php'; ?>
-<?php echo Loader::helper('concrete/ui')->tabs($tabs, false); ?>
-<?php //include '_includes/_backup_table.php'; ?>
+<?php $active_tab = 'dashboard'; include '_includes/_dashboard_nav.php'; ?>
 <?php
 $space_available_header = $view_helper->m62Lang('total_space_available');
 if($settings['auto_threshold'] != '0')
@@ -95,7 +94,7 @@ if($settings['auto_threshold'] != '0')
 			include '_includes/_backup_table.php';
 	?>
 	<?php else: ?>
-		<div class="no_backup_found"><?php echo $view_helper->m62Lang('no_backups_exist')?> <a href="<?php echo $url_base.'confirm_backup_db'; ?>"><?php echo $view_helper->m62Lang('would_you_like_to_backup_database_now')?></a></div>
+		<div class="no_backup_found"><?php echo $view_helper->m62Lang('no_backups_exist')?> <a href="<?php echo $this->url('/dashboard/backup_pro/backup/confirm_backup_db'); ?>"><?php echo $view_helper->m62Lang('would_you_like_to_backup_database_now')?></a></div>
 	<?php endif; ?>
 
 </div>

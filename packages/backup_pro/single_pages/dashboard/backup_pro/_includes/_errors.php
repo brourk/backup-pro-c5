@@ -19,7 +19,7 @@ if(count($bp_errors) >= 1)
 	    }
 	    elseif( $_error == 'invalid_working_directory' )
 	    {
-	        echo ' <a href="'.$url_base.'settings">'.$view_helper->m62Lang('check_working_dir').'</a>';
+	        echo ' <a href="'.$this->url('/dashboard/backup_pro/settings/general').'">'.$view_helper->m62Lang('check_working_dir').'</a>';
 	    }
 	    elseif( $_error == 'no_db_backups_exist_yet' )
 	    {

@@ -5,11 +5,12 @@ use \Concrete\Core\Page\Controller\DashboardPageController;
 
 class Settings extends DashboardPageController
 {
-    public function view()
+    public function view($section = 'general')
     {
         $this->set('message', __FILE__);
         //$this->set('title', __FILE__);
         
     
     }
+   
 }
