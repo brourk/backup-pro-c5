@@ -1,4 +1,13 @@
 <?php
+/**
+ * mithra62
+ *
+ * @copyright	Copyright (c) 2015, mithra62, Eric Lamb.
+ * @link		http://mithra62.com/
+ * @version		3.0
+ * @filesource 	./mithra62/Platforms/Concrete5.php
+ */
+ 
 namespace Concrete\Package\BackupPro;
 
 defined('C5_EXECUTE') or die('Access Denied.');
@@ -39,6 +48,9 @@ class Controller extends Package
         
         $sp = SinglePage::add('/dashboard/backup_pro/settings/storage', $pkg);
         $sp->setAttribute('exclude_nav', true);
+        
+        $sp = SinglePage::add('/backup_pro/cron', $pkg);
+        $sp->setAttribute('exclude_nav', true);
         return $pkg;
         
     }
@@ -51,4 +63,9 @@ class Controller extends Package
     {
         parent::uninstall();
     } 
+    
+    public function on_start()
+    {
+        require $this->getPackagePath() . '/vendor/autoload.php';
+    }
 }

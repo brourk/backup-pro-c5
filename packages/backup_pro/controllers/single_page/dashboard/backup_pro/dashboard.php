@@ -1,10 +1,9 @@
 <?php
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;
 
-use \Concrete\Core\Page\Controller\DashboardPageController;
-use View;
+use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
 
-class Dashboard extends DashboardPageController
+class Dashboard extends Concrete5Admin
 {
     public function view()
     {
