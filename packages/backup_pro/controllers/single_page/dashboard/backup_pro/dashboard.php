@@ -47,7 +47,7 @@ class Dashboard extends Concrete5Admin
     
     }
     
-    public function db_backups()
+    public function database_backups()
     {
         $backup = $this->services['backups'];
         $backups = $backup->setBackupPath($this->settings['working_directory'])->getAllBackups($this->settings['storage_details']);
@@ -62,7 +62,7 @@ class Dashboard extends Concrete5Admin
             'method' => $this->platform->getPost('method')
         );  
         
-        $this->prepView('db_backups', $variables);
+        $this->prepView('database_backups', $variables);
     }
     
     public function file_backups()
