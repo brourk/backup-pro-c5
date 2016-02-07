@@ -28,7 +28,7 @@
 </div>
 
 <fieldset>
-    
+    <legend><?php echo t($view_helper->m62Lang('configure_cron_notification'))?></legend>
     <div class="row">
     	<div class="form-group <?php if($form_errors['cron_notify_emails']): ?>has-error<?php endif; ?>">
     		<label for="cron_notify_emails" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('cron_notify_emails'))?></label>
@@ -53,7 +53,7 @@
     
     <div class="row">
     	<div class="form-group <?php if($form_errors['cron_notify_email_subject']): ?>has-error<?php endif; ?>">
-    		<label for="working_directory" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('cron_notify_email_subject'))?></label>
+    		<label for="cron_notify_email_subject" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('cron_notify_email_subject'))?></label>
     		<div class="col-sm-7">
     			<div class="input-group">
     			<?php echo $form->text('cron_notify_email_subject', $form_data['cron_notify_email_subject'])?>
