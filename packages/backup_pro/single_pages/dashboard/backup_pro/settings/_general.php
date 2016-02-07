@@ -52,7 +52,7 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row" id="auto_threshold_custom_wrap" style="display:none;">
 	<div class="form-group <?php if($form_errors['auto_threshold_custom']): ?>has-error<?php endif; ?>">
 		<label for="auto_threshold_custom" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('auto_threshold_custom'))?></label>
 		<div class="col-sm-7">

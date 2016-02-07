@@ -15,6 +15,7 @@ defined('C5_EXECUTE') or die('Access Denied.');
 
 use \Concrete\Core\Package\Package;
 use \Concrete\Core\Page\Single as SinglePage;
+use \Concrete\Core\Asset\AssetList;
 
 /**
  * mithra62 - Concrete5 Package Controller Object
@@ -114,5 +115,29 @@ class Controller extends Package
     public function on_start()
     {
         require $this->getPackagePath() . '/vendor/autoload.php';
+        
+        $al = AssetList::getInstance();
+        $al->register('javascript', 'bp3_chosen', 'assets/js/chosen.jquery.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_global', 'assets/js/global.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_dashboard', 'assets/js/dashboard.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_backup', 'assets/js/backup.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_restore', 'assets/js/restore.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_settings', 'assets/js/settings.js', array(), $this->pkgHandle);
+        $al->register('javascript', 'bp3_c5', 'assets/js/c5/backup_pro.js', array(), $this->pkgHandle);
+        
+        $al->register('css', 'bp3_general_css', 'assets/css/backup_pro.css', array(), $this->pkgHandle);      
+        $al->register('css', 'bp3_chosenl_css', 'assets/css/chosen.css', array(), $this->pkgHandle);  
+        
+        $al->registerGroup('b3_ui_assets', array(
+            array('css', 'bp3_chosenl_css'),
+            array('css', 'bp3_general_css'),
+            array('javascript', 'bp3_chosen'),
+            array('javascript', 'bp3_global'),
+            array('javascript', 'bp3_dashboard'),
+            array('javascript', 'bp3_backup'),
+            array('javascript', 'bp3_restore'),
+            array('javascript', 'bp3_settings'),
+            array('javascript', 'bp3_c5')
+        ));        
     }
 }
