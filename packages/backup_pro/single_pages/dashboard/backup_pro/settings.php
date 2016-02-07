@@ -14,6 +14,8 @@
 $form = Core::make('helper/form');
 ?>
 
+<br />
+
 <form name="backup_pro_settings" method="POST" action="" class="defaultForm form-horizontal " >
 <?php 
 switch($section)
