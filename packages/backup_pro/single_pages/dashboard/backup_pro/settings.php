@@ -18,6 +18,8 @@ $form = Core::make('helper/form');
 
 <form name="backup_pro_settings" method="POST" action="" class="defaultForm form-horizontal " >
 <?php 
+$token = Loader::helper('validation/token');
+$token->output('bp3_settings_form');
 switch($section)
 {
 	case 'cron':

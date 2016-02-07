@@ -58,6 +58,11 @@ class Settings extends Concrete5Admin
         $variables['form_has_errors'] = false;
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            //verify csrf 
+            $val = \Loader::helper('validation/form');
+            $val->addRequiredToken('bp3_settings_form');
+            
             $data = $_POST;
             
             $variables['form_data'] = array_merge(array(
@@ -71,8 +76,12 @@ class Settings extends Concrete5Admin
                 'db_creds' => $this->platform->getDbCredentials()
             );
             $settings_errors = $this->services['settings']->validate($data, $extra);
-            if (! $settings_errors) {
+            if (! $settings_errors && $val->test() ) {
                 if ($this->services['settings']->update($data)) {
+                    
+                    echo 'Good';
+                    exit;
+				    $this->redirect('/dashboard/backup_/search', 'view', $uID, 'created');
                     $this->platform->redirect($this->context->link->getAdminLink('AdminBackupProSettings') . '&section=' . $section . '&update=yes');
                 }
             } else {
@@ -84,13 +93,19 @@ class Settings extends Concrete5Admin
         $variables['section'] = $section;
         $variables['update'] = $update;
         $variables['db_tables'] = $this->services['db']->getTables();
-        //$variables['backup_cron_commands'] = $this->platform->setPrestaContext($this->context)->getBackupCronCommands($this->settings);
-        //$variables['ia_cron_commands'] = $this->platform->setPrestaContext($this->context)->getIaCronCommands($this->settings);
+        $variables['backup_cron_commands'] = array(); //$this->platform->setPrestaContext($this->context)->getBackupCronCommands($this->settings);
+        $variables['ia_cron_commands'] = array(); //$this->platform->setPrestaContext($this->context)->getIaCronCommands($this->settings);
         $variables['errors'] = $this->errors;
         $variables['threshold_options'] = $this->services['settings']->getAutoPruneThresholdOptions();
         $variables['available_db_backup_engines'] = $this->services['backup']->getDataBase()->getAvailableEnginesOptions();
         
         $this->prepView('settings', $variables);
+    }
+    
+    public function storage_locations($section = 'view')
+    {
+        echo $section;
+        exit;
     }
    
 }

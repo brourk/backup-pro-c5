@@ -1,4 +1,5 @@
 <fieldset>
+<input type="hidden" name="regex_file_exclude" value="0" />
     <div class="row">
     	<div class="form-group <?php if($form_errors['max_file_backups']): ?>has-error<?php endif; ?>">
     		<label for="max_file_backups" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('max_file_backups'))?></label>
