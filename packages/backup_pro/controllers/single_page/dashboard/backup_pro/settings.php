@@ -79,10 +79,8 @@ class Settings extends Concrete5Admin
             if (! $settings_errors && $val->test() ) {
                 if ($this->services['settings']->update($data)) {
                     
-                    echo 'Good';
-                    exit;
-				    $this->redirect('/dashboard/backup_/search', 'view', $uID, 'created');
-                    $this->platform->redirect($this->context->link->getAdminLink('AdminBackupProSettings') . '&section=' . $section . '&update=yes');
+				    //$this->redirect('/dashboard/backup_pro/search', 'view', $uID, 'created');
+                    return $this->platform->redirect($this->platform->getCurrentUrl() . '?update=yes');
                 }
             } else {
                 $variables['form_has_errors'] = true;
