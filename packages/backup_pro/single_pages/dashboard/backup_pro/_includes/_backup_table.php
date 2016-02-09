@@ -54,7 +54,7 @@
 	<td style="white-space: nowrap">
     	<?php if(isset($backup['storage_locations']) && is_array($backup['storage_locations']) ): ?>
     		<?php foreach($backup['storage_locations'] AS $location_id => $storage): ?>
-    			<img src="<?php echo $theme_folder_url; ?>backup_pro/admin/images/storage/<?php echo $view_helper->m62Escape($storage['icon']); ?>.png" class="" title="<?php echo $view_helper->m62Escape($storage['storage_location_name']); ?>">
+    			<img src="<?php echo $bp_static_path.'/images/storage/'.$view_helper->m62Escape($storage['storage_location_driver']); ?>.png" class="" title="<?php echo $view_helper->m62Escape($storage['storage_location_name']); ?>">
     		<?php endforeach; ?>
     	<?php endif; ?>
 	</td>
@@ -83,10 +83,10 @@
             
             <?php if( $backup['can_restore'] ): ?>
     			<a href="<?php echo $url_base;?>&section=restore&type=database&id=<?php echo urlencode($view_helper->m62Encode($backup['details_file_name'])); ?>&type=<?php echo $view_helper->m62Escape($backup['backup_type']); ?>" title="<?php echo $view_helper->m62Lang('restore'); ?>" id="restore_link_<?php echo $count; ?>">
-    				<img src="<?php echo $theme_folder_url; ?>backup_pro/admin/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="">
+    				<img src="<?php echo $bp_static_path; ?>/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="">
     			</a> 
             <?php else: ?>
-                <img src="<?php echo $theme_folder_url; ?>backup_pro/admin/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="desaturate">
+                <img src="<?php echo $bp_static_path; ?>/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="desaturate">
             <?php endif; ?>
 			
 		<?php endif; ?>
@@ -95,10 +95,10 @@
         $download_url = 'd';// wp_nonce_url($url_base.'download&noheader=true&id='.$encoded_name.'&type='.$backup['backup_type'], $encoded_name);
         ?>
     		<a href="<?php echo $download_url;?>" title="<?php echo $view_helper->m62Lang('download'); ?>" id="download_link_<?php echo $count; ?>">
-    			<img src="<?php echo $theme_folder_url; ?>backup_pro/admin/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="">
+    			<img src="<?php echo $bp_static_path; ?>/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="">
     		</a> 
 		<?php else: ?>
-			<img src="<?php echo $theme_folder_url; ?>backup_pro/admin/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="desaturate">
+			<img src="<?php echo $bp_static_path; ?>/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="desaturate">
 		<?php endif; ?>
 		</div>
 	</td>
