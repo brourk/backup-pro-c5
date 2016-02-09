@@ -1,5 +1,7 @@
-<?php include '_includes/_errors.php'; ?>
-<?php $active_tab = 'file_backups'; include '_includes/_dashboard_nav.php'; ?>
+<?php 
+$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);
+$view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'file_backups'), $this);
+?>
 
     <div class="panel">
 	<table class="table" width="100%"  border="0" cellpadding="0" cellspacing="0">

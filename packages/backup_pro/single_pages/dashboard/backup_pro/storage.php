@@ -1,11 +1,13 @@
-<?php include '_includes/_errors.php'; ?>
-<?php include 'settings/_settings_nav.php'; ?>
+<?php 
+$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  
+$view_helper->partial('settings/_settings_nav', array('active_tab' => $section), $this);
+?>
 
 <br />
 
 <div class="panel">
 
-	<?php include 'storage/_submenu.php'; ?>
+	<?php $view_helper->partial('storage/_submenu', array('available_storage_engines' => $available_storage_engines), $this); ?>
 
 	<table border="0" cellspacing="0" cellpadding="0" class="table"  width="100%" >
 	<thead>
