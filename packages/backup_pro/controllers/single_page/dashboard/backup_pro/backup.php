@@ -43,23 +43,23 @@ class Backup extends Abstractcontroller
             if( $backup->setDbInfo($db_info)->database($db_info['database'], $this->settings, $this->services['shell']) )
             {
                 $backups = $this->services['backups']->setBackupPath($this->settings['working_directory'])
-                ->getAllBackups($this->settings['storage_details']);
+                                                     ->getAllBackups($this->settings['storage_details']);
     
                 $backup->getStorage()->getCleanup()->setStorageDetails($this->settings['storage_details'])
-                ->setBackups($backups)
-                ->setDetails($this->services['backups']->getDetails())
-                ->autoThreshold($this->settings['auto_threshold'])
-                ->counts($this->settings['max_db_backups'])
-                ->duplicates($this->settings['allow_duplicates']);
+                                     ->setBackups($backups)
+                                     ->setDetails($this->services['backups']->getDetails())
+                                     ->autoThreshold($this->settings['auto_threshold'])
+                                     ->counts($this->settings['max_db_backups'])
+                                     ->duplicates($this->settings['allow_duplicates']);
     
-                ee()->session->set_flashdata('message_success', $this->services['lang']->__('backup_progress_bar_stop'));
-                $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/db_backups'));
+			    $this->redirect('/dashboard/backup_pro/dashboard/database_backups/?backup_complete=yes');
+			    exit;
             }
         }
         else
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__($error->getError()));
-            $this->platform->redirect($this->url_base.'db_backups');
+		    $this->redirect('/dashboard/backup_pro/dashboard/database_backups/?backup_fail=yes');
+		    exit;
         }
     
         exit;
@@ -68,7 +68,7 @@ class Backup extends Abstractcontroller
     /**
      * Manually execute a file backup
      */
-    public function backup_files()
+    public function exec_backup_files()
     {
         @session_write_close();
         $error = $this->services['errors'];
@@ -84,18 +84,17 @@ class Backup extends Abstractcontroller
             if( $backup->files($this->settings, $this->services['files'], $this->services['regex']) )
             {
                 $backups = $this->services['backups']->setBackupPath($this->settings['working_directory'])
-                ->getAllBackups($this->settings['storage_details']);
+                                                     ->getAllBackups($this->settings['storage_details']);
     
                 $backup->getStorage()->getCleanup()->setStorageDetails($this->settings['storage_details'])
-                ->setBackups($backups)
-                ->setDetails($this->services['backups']->getDetails())
-                ->autoThreshold($this->settings['auto_threshold'])
-                ->counts($this->settings['max_file_backups'], 'files')
-                ->duplicates($this->settings['allow_duplicates']);
+                                     ->setBackups($backups)
+                                     ->setDetails($this->services['backups']->getDetails())
+                                     ->autoThreshold($this->settings['auto_threshold'])
+                                     ->counts($this->settings['max_file_backups'], 'files')
+                                     ->duplicates($this->settings['allow_duplicates']);
     
-                ee()->session->set_flashdata('message_success', $this->services['lang']->__('backup_progress_bar_stop'));
-                $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/file_backups'));
-                exit;
+			    $this->redirect('/dashboard/backup_pro/dashboard/file_backups/?backup_complete=yes');
+			    exit;
             }
         }
         else
@@ -120,17 +119,17 @@ class Backup extends Abstractcontroller
         switch($type)
         {
             case 'database':
-                $proc_url = $this->action('addons/settings/backup_pro/backup_database');
+                $proc_url = 'exec_backup_database';
                 $errors = $this->services['errors']->clearErrors()->checkWorkingDirectory($this->settings['working_directory'])
-                ->checkStorageLocations($this->settings['storage_details'])
-                ->getErrors();
+                                                   ->checkStorageLocations($this->settings['storage_details'])
+                                                   ->getErrors();
                 break;
             case 'files':
-                $proc_url = ee('CP/URL', 'addons/settings/backup_pro/backup_files');
+                $proc_url = 'exec_backup_files';
                 $errors = $this->services['errors']->clearErrors()->checkWorkingDirectory($this->settings['working_directory'])
-                ->checkStorageLocations($this->settings['storage_details'])
-                ->checkFileBackupLocations($this->settings['backup_file_location'])
-                ->getErrors();
+                                                   ->checkStorageLocations($this->settings['storage_details'])
+                                                   ->checkFileBackupLocations($this->settings['backup_file_location'])
+                                                   ->getErrors();
                 break;
         }
     
@@ -148,6 +147,7 @@ class Backup extends Abstractcontroller
         $vars['url_base'] = $this->url_base;
         $vars['backup_type'] = $type;
         $vars['method'] = '';
+        $vars['pageTitle'] = $this->services['lang']->__('backup_'.$type);
         $this->prepView('backup', $vars);
     }
 }

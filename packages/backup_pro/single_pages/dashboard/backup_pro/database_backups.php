@@ -35,7 +35,6 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
 	
 	
 		<form name="remove_backups" action="<?php echo $url_base; ?>confirm_remove_backup" method="post"  />
-        <?php echo wp_nonce_field( 'remove_bp_backups' ); ?>
 		<input type="hidden" name="type" id="hidden_backup_type" value="database" />	
         <?php 
         $options = array('enable_type' => 'no', 'enable_editable_note' => 'yes', 'enable_actions' => 'yes', 'enable_delete' => 'yes');
@@ -44,7 +43,7 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
         include '_includes/_backup_table.php';
         ?>		
         <div class="buttons right" style="float:right">
-            <?php submit_button($view_helper->m62Lang('delete_backups'), 'primary', '_remove_backup_button');?>
+            <?php //submit_button($view_helper->m62Lang('delete_backups'), 'primary', '_remove_backup_button');?>
         </div>
 		</form>		
 	<?php endif; ?>

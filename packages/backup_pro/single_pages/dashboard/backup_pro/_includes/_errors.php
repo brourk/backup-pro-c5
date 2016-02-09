@@ -2,7 +2,6 @@
 
 if(count($bp_errors) >= 1)
 {
-	
 	foreach($bp_errors AS $key => $_error)
 	{
 	    echo '<div class="alert alert-warning" style="margin-right:20px;">';
@@ -28,6 +27,10 @@ if(count($bp_errors) >= 1)
 	    elseif( $_error == 'no_file_backups_exist_yet' )
 	    {
 	        echo ' <a href="'.$url_base.'backup&type=files">'.$view_helper->m62Lang('would_you_like_to_backup_files_now').'</a>';
+	    }
+	    elseif( $_error == 'no_backup_file_location' )
+	    {
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/settings/files').'">Set File Backup Locations</a>';
 	    }
 	    elseif( $_error == 'db_backup_past_expectation_stub' || $_error == 'file_backup_past_expectation_stub' )
 	    {
