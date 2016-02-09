@@ -4,7 +4,9 @@ $view_helper->partial('settings/_settings_nav', array('active_tab' => $section),
 $form = Core::make('helper/form');
 $ui = Loader::helper('concrete/ui');
 ?>
+<br />
 
+<div class="panel">
 
 <form name="new_storage_form" method="POST" action="" class="defaultForm form-horizontal " >
     <?php 
@@ -22,3 +24,4 @@ $ui = Loader::helper('concrete/ui');
         </div>
 	</div>                    
 </form>		
+</div>

@@ -189,8 +189,8 @@ class Settings extends Abstractcontroller
     {
         if( empty($this->settings['storage_details'][$storage_id]) )
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));
-            $this->platform->redirect($this->url_base.'view_storage');
+		    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_invalid_id=yes');
+		    exit;
         }
     
         $storage_details = $this->settings['storage_details'][$storage_id];
@@ -206,11 +206,7 @@ class Settings extends Abstractcontroller
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $data = array();
-            foreach($_POST as $key => $value){
-                $data[$key] = ee()->input->post($key);
-            }
-            
+            $data = $_POST;
             $variables['form_data'] = $data;
             $data['location_id'] = $storage_id;
             $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $storage_details['storage_location_driver'], $data, $this->settings['storage_details']);
@@ -218,8 +214,8 @@ class Settings extends Abstractcontroller
             {
                 if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->update($storage_id, $variables['form_data']) )
                 {
-                    ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_updated'));
-                    $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+				    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_updated=yes');
+				    exit;
                 }
             }
             else
@@ -228,8 +224,9 @@ class Settings extends Abstractcontroller
             }
         }
 
-        $variables['section'] = 'storage';
+        $variables['section'] = 'storage_locations';
         $variables['storage_id'] = $storage_id;
+        $variables['pageTitle'] = $this->services['lang']->__('edit_storage_location').' ('.$this->services['lang']->__($variables['storage_engine']['name']).')';
         $this->prepView('storage/edit', $variables);  
     }
     
@@ -288,8 +285,9 @@ class Settings extends Abstractcontroller
             }
         }
 
-        $variables['section'] = 'storage';
+        $variables['section'] = 'storage_locations';
         $variables['storage_id'] = $storage_id;
+        $variables['pageTitle'] = $this->services['lang']->__('remove_storage_location').' ('.$this->services['lang']->__($variables['storage_engine']['name']).')';
         $this->prepView('storage/remove', $variables);
     }
    
