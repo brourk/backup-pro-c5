@@ -11,15 +11,15 @@ if(count($bp_errors) >= 1)
 	    
 	    if( $key == 'no_storage_locations_setup' )
 	    {
-	        echo ' <a href="'.$url_base.'new_storage&engine=local">'.$view_helper->m62Lang('setup_storage_location').'</a>';
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/settings/new_storage', 'local').'">'.$view_helper->m62Lang('setup_storage_location').'</a>';
 	    }
 	    elseif( $key == 'license_number' )
 	    {
-	        echo ' <a href="'.$url_base.'settings&section=license">'.$view_helper->m62Lang('enter_license').'</a> or <a href="https://mithra62.com/projects/view/backup-pro">'.$view_helper->m62Lang('purchase_a_license').'</a>';
+	        //echo ' <a href="'.$url_base.'settings&section=license">'.$view_helper->m62Lang('enter_license').'</a> or <a href="https://mithra62.com/projects/view/backup-pro">'.$view_helper->m62Lang('purchase_a_license').'</a>';
 	    }
 	    elseif( $_error == 'invalid_working_directory' )
 	    {
-	        echo ' <a href="'.$this->url('/dashboard/backup_pro/settings/general').'">'.$view_helper->m62Lang('check_working_dir').'</a>';
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/settings/general').'">'.$view_helper->m62Lang('check_working_dir').'</a>';
 	    }
 	    elseif( $_error == 'no_db_backups_exist_yet' )
 	    {

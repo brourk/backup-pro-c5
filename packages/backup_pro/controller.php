@@ -52,7 +52,7 @@ class Controller extends Package
      */
     public function getPackageDescription()
     {
-        return t('Adds a searchable file library to a page.');
+        return t('The complete backup solution for Concrete5. Redundancy, Automated Backup Integrity, 8 Built-in Storage Locations, and so much more ');
     }
 
     /**
