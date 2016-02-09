@@ -158,8 +158,8 @@ class Settings extends Abstractcontroller
             {
                 if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->create($engine, $variables['form_data']) )
                 {
-                    ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_added'));
-                    $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+				    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_added=yes');
+				    exit;
                 }
             }
             else
