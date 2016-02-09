@@ -150,10 +150,7 @@ class Settings extends Abstractcontroller
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $data = array();
-            foreach($_POST as $key => $value){
-                $data[$key] = ee()->input->post($key);
-            }
+            $data = $_POST;
             
             $variables['form_data'] = $data;
             $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $engine, $data, $this->settings['storage_details']);
@@ -178,8 +175,9 @@ class Settings extends Abstractcontroller
             $variables['_form_template'] = 'storage/drivers/_'.$engine;
         }
 
-        $variables['section'] = 'storage';
+        $variables['section'] = 'storage_locations';
         $variables['engine'] = $engine;
+        $variables['pageTitle'] = $this->services['lang']->__('add_storage_location');
         $this->prepView('storage/new', $variables);  
     }
     
