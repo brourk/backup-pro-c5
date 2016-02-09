@@ -82,7 +82,7 @@ class Controller extends Package
         SinglePage::add('/dashboard/backup_pro/backup_files', $pkg);
         SinglePage::add('/dashboard/backup_pro/settings', $pkg);
         
-        $sp = SinglePage::add('/dashboard/backup_pro/settings/storage', $pkg);
+        $sp = SinglePage::add('/dashboard/backup_pro/backup', $pkg);
         $sp->setAttribute('exclude_nav', true);
         
         $sp = SinglePage::add('/backup_pro/cron', $pkg);

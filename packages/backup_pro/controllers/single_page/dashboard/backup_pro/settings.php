@@ -82,7 +82,6 @@ class Settings extends Abstractcontroller
                     
 				    $this->redirect('/dashboard/backup_pro/settings/'.$section . '?update=yes');
 				    exit;
-                    //return $this->platform->redirect($this->platform->getCurrentUrl() . '?update=yes');
                 }
             } else {
                 $variables['form_has_errors'] = true;
