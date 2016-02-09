@@ -25,7 +25,7 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
 </div>    
 
 
-<div class="row panel">
+<div class=" panel">
 
 	<h3><?=$view_helper->m62Lang('database_backups').' ('.count($backups['database']).')';?></h3>
 	

@@ -46,7 +46,7 @@ switch($section)
 
 	<div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-		<?php echo $ui->submit(t('Save'), 'mail-settings-form','right','btn-primary')?>
+		<?php echo $ui->submit(t($view_helper->m62Lang('update_settings')), 'mail-settings-form','right','btn-primary')?>
         </div>
 	</div>
 </form>

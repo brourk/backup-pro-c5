@@ -32,7 +32,7 @@ if($settings['auto_threshold'] != '0')
     	</table>
 	</div>
 
-<div class="row panel">
+<div class=" panel">
 
 	<div class="col-md-6 ">
 				<table class="table"  width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -86,7 +86,7 @@ if($settings['auto_threshold'] != '0')
 
 </div>
 
-<div class="row panel">
+<div class=" panel">
 
 	<?php 
 		if(count($backups) > 0):

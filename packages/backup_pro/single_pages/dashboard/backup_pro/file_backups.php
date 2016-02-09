@@ -24,7 +24,7 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'file_ba
 	</table>
 	</div>    
 	
-	<div class="row panel">
+	<div class=" panel">
 	
     <h3  class="accordion"><?php echo $view_helper->m62Lang('file_backups').' ('.count($backups['files']).')'?></h3>
 	<?php if(count($backups['files']) == 0): ?>
