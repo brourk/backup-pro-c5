@@ -4,7 +4,11 @@
 	<?php $view_helper->partial('_includes/_errors', array('bp_errors' => $pre_backup_errors), $this);  ?>
 <?php else: ?>
 
-	<form name="new_storage_form" method="POST" action="<?php echo $this->action($proc_url); ?>" class="defaultForm form-horizontal " >
+	<form name="backup_form" method="POST" action="<?php echo $this->action($proc_url); ?>" class="defaultForm form-horizontal " >
+<?php 
+$token = Loader::helper('validation/token');
+$token->output('bp3_backup_form');
+?>	
 		<div id="backup_instructions">
 			<?php echo $view_helper->m62Lang('backup_in_progress_instructions'); ?>
 		</div>	

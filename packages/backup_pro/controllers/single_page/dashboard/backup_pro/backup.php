@@ -28,12 +28,20 @@ class Backup extends Abstractcontroller
      */
     public function exec_backup_database()
     {
+        $val = \Loader::helper('validation/form');
+        $val->addRequiredToken('bp3_backup_form');
+        
+        if ($_SERVER['REQUEST_METHOD'] != 'POST' || !$val->test() ) {
+            $this->redirect('/dashboard/backup_pro/backup_database');
+            exit;
+        }
+        
         @session_write_close();
         $error = $this->services['errors'];
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])
-        ->checkWorkingDirectory($this->settings['working_directory'])
-        ->checkBackupDirs($backup->getStorage());
+                             ->checkWorkingDirectory($this->settings['working_directory'])
+                             ->checkBackupDirs($backup->getStorage());
         if( $error->totalErrors() == '0' )
         {
             ini_set('memory_limit', -1);
@@ -70,6 +78,14 @@ class Backup extends Abstractcontroller
      */
     public function exec_backup_files()
     {
+        $val = \Loader::helper('validation/form');
+        $val->addRequiredToken('bp3_backup_form');
+        
+        if ($_SERVER['REQUEST_METHOD'] != 'POST' || !$val->test() ) {
+            $this->redirect('/dashboard/backup_pro/backup_files');
+            exit;
+        }
+        
         @session_write_close();
         $error = $this->services['errors'];
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
