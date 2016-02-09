@@ -29,12 +29,12 @@
     </div>  
     
     <div class="row">
-    	<div class="form-group <?php if($form_errors['backup_file_locations']): ?>has-error<?php endif; ?>">
-    		<label for="backup_file_locations" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('backup_file_locations'))?></label>
+    	<div class="form-group <?php if($form_errors['backup_file_location']): ?>has-error<?php endif; ?>">
+    		<label for="backup_file_locations" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('backup_file_location'))?></label>
     		<div class="col-sm-7">
-    		<?php echo $form->textarea('backup_file_locations', $form_data['backup_file_locations']); ?>
-    		<div class="help-block small"><?php echo $view_helper->m62Lang('backup_file_locations_instructions'); ?></div>
-    		<?php echo $view_helper->m62FormErrors($form_errors['backup_file_locations']); ?>
+    		<?php echo $form->textarea('backup_file_location', $form_data['backup_file_location']); ?>
+    		<div class="help-block small"><?php echo $view_helper->m62Lang('backup_file_location_instructions'); ?></div>
+    		<?php echo $view_helper->m62FormErrors($form_errors['backup_file_location']); ?>
     		</div>
     	</div>
     </div>

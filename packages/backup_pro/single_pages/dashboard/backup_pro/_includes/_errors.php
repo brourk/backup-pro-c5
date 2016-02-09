@@ -5,8 +5,8 @@ if(count($bp_errors) >= 1)
 	
 	foreach($bp_errors AS $key => $_error)
 	{
-	    echo '<div class="alert alert-warning">';
-	    echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+	    echo '<div class="alert alert-warning" style="margin-right:20px;">';
+	    //echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
 	    echo $view_helper->m62Lang($_error);
 	    
 	    if( $key == 'no_storage_locations_setup' )

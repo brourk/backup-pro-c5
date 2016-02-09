@@ -11,7 +11,7 @@
  
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;
 
-use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
+use Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro\Abstractcontroller;
 
 /**
  * mithra62 - Concrete5 Package Settings Controller
@@ -21,7 +21,7 @@ use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
  * @package Concrete5
  * @author Eric Lamb <eric@mithra62.com>
  */
-class Settings extends Concrete5Admin
+class Settings extends Abstractcontroller
 {
     /**
      * The default Storage form field values
@@ -75,12 +75,14 @@ class Settings extends Concrete5Admin
             $extra = array(
                 'db_creds' => $this->platform->getDbCredentials()
             );
+            
             $settings_errors = $this->services['settings']->validate($data, $extra);
             if (! $settings_errors && $val->test() ) {
                 if ($this->services['settings']->update($data)) {
                     
-				    //$this->redirect('/dashboard/backup_pro/search', 'view', $uID, 'created');
-                    return $this->platform->redirect($this->platform->getCurrentUrl() . '?update=yes');
+				    $this->redirect('/dashboard/backup_pro/settings/'.$section . '?update=yes');
+				    exit;
+                    //return $this->platform->redirect($this->platform->getCurrentUrl() . '?update=yes');
                 }
             } else {
                 $variables['form_has_errors'] = true;
@@ -88,6 +90,11 @@ class Settings extends Concrete5Admin
             }
         }
         
+        if( $this->platform->getPost('update') == 'yes' )
+        {
+            $variables['message'] = $this->services['lang']->__('settings_updated');
+        }
+
         $variables['section'] = $section;
         $variables['update'] = $update;
         $variables['db_tables'] = $this->services['db']->getTables();
@@ -96,14 +103,212 @@ class Settings extends Concrete5Admin
         $variables['errors'] = $this->errors;
         $variables['threshold_options'] = $this->services['settings']->getAutoPruneThresholdOptions();
         $variables['available_db_backup_engines'] = $this->services['backup']->getDataBase()->getAvailableEnginesOptions();
+        $variables['pageTitle'] = $this->services['lang']->__($variables['section'].'_bp_settings_menu').' Settings';
         
         $this->prepView('settings', $variables);
     }
     
-    public function storage_locations($section = 'view')
+    /**
+     * View all the storage entries 
+     * @return string
+     */
+    public function storage_locations()
     {
-        echo $section;
-        exit;
+        $variables = array();
+        $variables['can_remove'] = true;
+        if( count($this->settings['storage_details']) <= 1 )
+        {
+            $variables['can_remove'] = false;
+        }
+    
+        $variables['available_storage_engines'] = $this->services['backup']->getStorage()->getAvailableStorageDrivers();
+        $variables['storage_details'] = $this->settings['storage_details'];
+        //$variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
+        $variables['section'] = 'storage_locations';
+        $variables['pageTitle'] = $this->services['lang']->__('storage_bp_settings_menu');  
+        $this->prepView('storage', $variables);     
+    }
+    
+    /**
+     * Add a storage entry
+     * @return string
+     */
+    public function new_storage($engine = 'local')
+    {
+        $variables = array();
+        $variables['available_storage_engines'] = $this->services['backup']->getStorage()->getAvailableStorageDrivers();
+    
+        if( !isset($variables['available_storage_engines'][$engine]) )
+        {
+            $engine = 'local';
+        }
+        
+        $variables['storage_details'] = $this->settings['storage_details'];    
+        $variables['storage_engine'] = $variables['available_storage_engines'][$engine];
+        $variables['form_data'] = array_merge($this->settings, $variables['storage_engine']['settings'], $this->storage_form_data_defaults);
+        $variables['form_errors'] = array_merge($this->returnEmpty($this->settings), $this->returnEmpty($variables['storage_engine']['settings']), $this->storage_form_data_defaults);
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $data = array();
+            foreach($_POST as $key => $value){
+                $data[$key] = ee()->input->post($key);
+            }
+            
+            $variables['form_data'] = $data;
+            $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $engine, $data, $this->settings['storage_details']);
+            if( !$settings_errors )
+            {
+                if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->create($engine, $variables['form_data']) )
+                {
+                    ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_added'));
+                    $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+                }
+            }
+            else
+            {
+                $variables['form_errors'] = array_merge($variables['form_errors'], $settings_errors);
+            }
+        }
+    
+        $variables['errors'] = $this->errors;
+        $variables['_form_template'] = false;
+        if( $variables['storage_engine']['obj']->hasSettingsView() )
+        {
+            $variables['_form_template'] = 'storage/drivers/_'.$engine;
+        }
+
+        $variables['section'] = 'storage';
+        $variables['engine'] = $engine;
+        $this->prepView('storage/new', $variables);  
+    }
+    
+    /**
+     * Edit a storage entry
+     * @return string
+     */    
+    public function edit_storage($storage_id)
+    {
+        if( empty($this->settings['storage_details'][$storage_id]) )
+        {
+            ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));
+            $this->platform->redirect($this->url_base.'view_storage');
+        }
+    
+        $storage_details = $this->settings['storage_details'][$storage_id];
+    
+        $variables = array();
+        $variables['storage_details'] = $storage_details;
+        $variables['form_data'] = array_merge($this->storage_form_data_defaults, $storage_details);
+        $variables['form_errors'] = $this->returnEmpty($storage_details); //array_merge($storage_details, $this->form_data_defaults);
+        $variables['errors'] = $this->errors;
+        $variables['available_storage_engines'] = $this->services['backup']->getStorage()->getAvailableStorageOptions();
+        $variables['storage_engine'] = $variables['available_storage_engines'][$storage_details['storage_location_driver']];
+        $variables['_form_template'] = 'storage/drivers/_'.$storage_details['storage_location_driver'];
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $data = array();
+            foreach($_POST as $key => $value){
+                $data[$key] = ee()->input->post($key);
+            }
+            
+            $variables['form_data'] = $data;
+            $data['location_id'] = $storage_id;
+            $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $storage_details['storage_location_driver'], $data, $this->settings['storage_details']);
+            if( !$settings_errors )
+            {
+                if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->update($storage_id, $variables['form_data']) )
+                {
+                    ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_updated'));
+                    $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+                }
+            }
+            else
+            {
+                $variables['form_errors'] = array_merge($variables['form_errors'], $settings_errors);
+            }
+        }
+
+        $variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
+        $variables['section'] = 'storage';
+        $variables['storage_id'] = $storage_id;
+        ee()->view->cp_page_title = $this->services['lang']->__('storage_bp_settings_menu');
+        //return ee()->load->view('storage/edit', $variables, true);
+
+        return array(
+            'body' => ee()->load->view('storage/edit', $variables, true),
+            'heading' => $this->services['lang']->__('edit_storage_location'),
+            'breadcrumb' => array(
+                ee('CP/URL', 'addons/settings/backup_pro')->compile() => lang('backup_pro_module_name'),
+                ee('CP/URL', 'addons/settings/backup_pro/settings/general')->compile() => lang('settings'),
+                ee('CP/URL', 'addons/settings/backup_pro/view_storage')->compile() => $this->services['lang']->__('storage_bp_settings_menu'),
+            )
+        );
+    }
+    
+    /**
+     * Remove a storage entry
+     * @return string
+     */    
+    public function remove_storage($storage_id)
+    {
+        if( count($this->settings['storage_details']) <= 1 )
+        {
+            ee()->session->set_flashdata('message_error', $this->services['lang']->__('min_storage_location_needs'));
+            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+        }
+    
+        if( empty($this->settings['storage_details'][$storage_id]) )
+        {
+            ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));
+            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+        }
+    
+        $storage_details = $this->settings['storage_details'][$storage_id];
+    
+        $variables = array();
+        $variables['form_data'] = array('remove_remote_files' => '0');
+        $variables['form_errors'] = array('remove_remote_files' => false);
+        $variables['errors'] = $this->errors;
+        $variables['available_storage_engines'] = $this->services['backup']->getStorage()->getAvailableStorageDrivers();
+        $variables['storage_engine'] = $variables['available_storage_engines'][$storage_details['storage_location_driver']];
+        $variables['storage_details'] = $storage_details;
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $data = array();
+            foreach($_POST as $key => $value){
+                $data[$key] = ee()->input->post($key);
+            }
+            
+            $backups = $this->services['backups']->setBackupPath($this->settings['working_directory'])
+                                                  ->getAllBackups($this->settings['storage_details'], $this->services['backup']->getStorage()->getAvailableStorageDrivers());
+    
+            if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->remove($storage_id, $data, $backups) )
+            {
+                ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_removed'));
+                $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+            }
+            else
+            {
+                $variables['form_errors'] = array_merge($variables['form_errors'], $settings_errors);
+            }
+        }
+
+        $variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
+        $variables['section'] = 'storage';
+        $variables['storage_id'] = $storage_id;
+
+        return array(
+            'body' => ee()->load->view('storage/remove', $variables, true),
+            'heading' => $this->services['lang']->__('remove_storage_location'),
+            'breadcrumb' => array(
+                ee('CP/URL', 'addons/settings/backup_pro')->compile() => lang('backup_pro_module_name'),
+                ee('CP/URL', 'addons/settings/backup_pro/settings/general')->compile() => lang('settings'),
+                ee('CP/URL', 'addons/settings/backup_pro/view_storage')->compile() => $this->services['lang']->__('storage_bp_settings_menu'),
+            )
+        );        
     }
    
 }

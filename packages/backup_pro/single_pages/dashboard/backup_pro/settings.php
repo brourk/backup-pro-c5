@@ -4,11 +4,7 @@
 
 <?php if( $form_has_errors ): ?>
 	<div class="alert alert-danger">Woops! Looks like we have an issue...</div>
-<?php endif; ?>    
-
-<?php if( $update == 'yes' ): ?>
-<div class="alert alert-success">{'settings_updated'|m62Lang}</div>
-<?php endif; ?> 
+<?php endif; ?>  
 
 <?php include 'settings/_settings_nav.php'; 
 $form = Core::make('helper/form');

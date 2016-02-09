@@ -82,8 +82,8 @@ class Dashboard extends Concrete5Admin
             'backup_meta' => $backup_meta,
             'backups' => $backups,
             'errors' => $this->errors,
-            //'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => $this->platform->getPost('method')
+            'method' => $this->platform->getPost('method'),
+            'pageTitle' => $this->services['lang']->__('database_backups')
         );  
         
         $this->prepView('database_backups', $variables);
@@ -103,8 +103,8 @@ class Dashboard extends Concrete5Admin
             'backup_meta' => $backup_meta,
             'backups' => $backups,
             'errors' => $this->errors,
-            //'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => $this->platform->getPost('method')
+            'method' => $this->platform->getPost('method'),
+            'pageTitle' => $this->services['lang']->__('file_backups')
         );  
         
         $this->prepView('file_backups', $variables);

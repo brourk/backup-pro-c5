@@ -114,8 +114,15 @@ class Controller extends Package
      */
     public function on_start()
     {
+        //load up composer goodies
         require $this->getPackagePath() . '/vendor/autoload.php';
         
+        //setup the view paths
+        \Config::set('backup_pro.partial_path', __DIR__);
+        \Config::set('backup_pro.static_assets.url_base', '/packages/backup_pro/assets/');
+        
+        
+        //setup the static assets
         $al = AssetList::getInstance();
         $al->register('javascript', 'bp3_chosen', 'assets/js/chosen.jquery.js', array(), $this->pkgHandle);
         $al->register('javascript', 'bp3_global', 'assets/js/global.js', array(), $this->pkgHandle);
