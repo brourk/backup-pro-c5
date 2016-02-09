@@ -17,7 +17,14 @@
 	</div>
 </div>
 
-<?php $view_helper->partial($_form_template, array(), $context); ?>
+<?php 
+$vars = array(
+    'form' => $form,
+    '_form_template' => $_form_template,
+    'form_data' => $form_data,
+    'form_errors' => $form_errors
+);
+$view_helper->partial($_form_template, $vars, $context); ?>
 
 <div class="row">
 	<div class="form-group <?php if(is_array($form_errors['storage_location_status'])): ?>has-error<?php endif; ?>">
