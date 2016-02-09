@@ -22,7 +22,7 @@ $ui = Loader::helper('concrete/ui');
 <form name="backup_pro_settings" method="POST" action="" class="defaultForm form-horizontal " >
 <?php 
 $token = Loader::helper('validation/token');
-$token->output('bp3_new_storage_form');
+$token->output('bp3_edit_storage_form');
 $vars = array(
     'form' => $form, 
     '_form_template' => $_form_template,

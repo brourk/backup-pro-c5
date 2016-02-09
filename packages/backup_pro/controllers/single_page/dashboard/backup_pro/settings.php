@@ -149,11 +149,14 @@ class Settings extends Abstractcontroller
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
+            $val = \Loader::helper('validation/form');
+            $val->addRequiredToken('bp3_new_storage_form');
+            
             $data = $_POST;
             
             $variables['form_data'] = $data;
             $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $engine, $data, $this->settings['storage_details']);
-            if( !$settings_errors )
+            if( !$settings_errors && $val->test() )
             {
                 if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->create($engine, $variables['form_data']) )
                 {
@@ -205,11 +208,14 @@ class Settings extends Abstractcontroller
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
+            $val = \Loader::helper('validation/form');
+            $val->addRequiredToken('bp3_edit_storage_form');
+            
             $data = $_POST;
             $variables['form_data'] = $data;
             $data['location_id'] = $storage_id;
             $settings_errors = $this->services['backup']->getStorage()->validateDriver($this->services['validate'], $storage_details['storage_location_driver'], $data, $this->settings['storage_details']);
-            if( !$settings_errors )
+            if( !$settings_errors && $val->test() )
             {
                 if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->update($storage_id, $variables['form_data']) )
                 {
