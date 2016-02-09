@@ -228,21 +228,9 @@ class Settings extends Abstractcontroller
             }
         }
 
-        $variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
         $variables['section'] = 'storage';
         $variables['storage_id'] = $storage_id;
-        ee()->view->cp_page_title = $this->services['lang']->__('storage_bp_settings_menu');
-        //return ee()->load->view('storage/edit', $variables, true);
-
-        return array(
-            'body' => ee()->load->view('storage/edit', $variables, true),
-            'heading' => $this->services['lang']->__('edit_storage_location'),
-            'breadcrumb' => array(
-                ee('CP/URL', 'addons/settings/backup_pro')->compile() => lang('backup_pro_module_name'),
-                ee('CP/URL', 'addons/settings/backup_pro/settings/general')->compile() => lang('settings'),
-                ee('CP/URL', 'addons/settings/backup_pro/view_storage')->compile() => $this->services['lang']->__('storage_bp_settings_menu'),
-            )
-        );
+        $this->prepView('storage/edit', $variables);  
     }
     
     /**
@@ -253,14 +241,14 @@ class Settings extends Abstractcontroller
     {
         if( count($this->settings['storage_details']) <= 1 )
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__('min_storage_location_needs'));
-            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+		    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_min_needed_fail=yes');
+		    exit;
         }
     
         if( empty($this->settings['storage_details'][$storage_id]) )
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));
-            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+		    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_invalid_id=yes');
+		    exit;
         }
     
         $storage_details = $this->settings['storage_details'][$storage_id];
@@ -275,18 +263,24 @@ class Settings extends Abstractcontroller
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $data = array();
-            foreach($_POST as $key => $value){
-                $data[$key] = ee()->input->post($key);
-            }
+            $val = \Loader::helper('validation/form');
+            $val->addRequiredToken('bp3_remove_storage_form');
             
-            $backups = $this->services['backups']->setBackupPath($this->settings['working_directory'])
-                                                  ->getAllBackups($this->settings['storage_details'], $this->services['backup']->getStorage()->getAvailableStorageDrivers());
-    
-            if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->remove($storage_id, $data, $backups) )
+            if( $val->test() )
             {
-                ee()->session->set_flashdata('message_success', $this->services['lang']->__('storage_location_removed'));
-                $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro/view_storage'));
+                $data = $_POST;
+                $backups = $this->services['backups']->setBackupPath($this->settings['working_directory'])
+                                                      ->getAllBackups($this->settings['storage_details'], $this->services['backup']->getStorage()->getAvailableStorageDrivers());
+        
+                if( $this->services['backup']->getStorage()->getLocations()->setSetting($this->services['settings'])->remove($storage_id, $data, $backups) )
+                {
+				    $this->redirect('/dashboard/backup_pro/settings/storage_locations' . '?storage_removed=yes');
+				    exit;
+                }
+                else
+                {
+                    $variables['form_errors'] = array_merge($variables['form_errors'], $settings_errors);
+                }
             }
             else
             {
@@ -294,19 +288,9 @@ class Settings extends Abstractcontroller
             }
         }
 
-        $variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
         $variables['section'] = 'storage';
         $variables['storage_id'] = $storage_id;
-
-        return array(
-            'body' => ee()->load->view('storage/remove', $variables, true),
-            'heading' => $this->services['lang']->__('remove_storage_location'),
-            'breadcrumb' => array(
-                ee('CP/URL', 'addons/settings/backup_pro')->compile() => lang('backup_pro_module_name'),
-                ee('CP/URL', 'addons/settings/backup_pro/settings/general')->compile() => lang('settings'),
-                ee('CP/URL', 'addons/settings/backup_pro/view_storage')->compile() => $this->services['lang']->__('storage_bp_settings_menu'),
-            )
-        );        
+        $this->prepView('storage/remove', $variables);
     }
    
 }
