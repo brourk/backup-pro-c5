@@ -32,9 +32,10 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'file_ba
 	<?php else: ?>
 	
 	
-		<form name="remove_backups" action="<?php echo $url_base; ?>confirm_remove_backup" method="post">
-        <?php //echo wp_nonce_field( 'remove_bp_backups' ); ?>
+		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post">
         <?php 
+        $token = Loader::helper('validation/token');
+        $token->output('bp3_remove_backups_confirm');        
         $options = array('enable_type' => 'no', 'enable_editable_note' => 'yes', 'enable_actions' => 'yes', 'enable_delete' => 'yes');
         extract($options);
         $backups = $backups['files'];
@@ -42,9 +43,9 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'file_ba
         ?>	
 		<input type="hidden" name="type" id="hidden_backup_type" value="files" />	
 		
-        <div class="buttons right" style="float:right">
-            <?php //submit_button($view_helper->m62Lang('delete_backups'), 'primary', '_remove_backup_button');?>
-        </div>
+        <button name="_remove_backup_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
+            <?php echo $view_helper->m62Lang('delete_selected'); ?>
+        </button>
 		
 		</form>
 							

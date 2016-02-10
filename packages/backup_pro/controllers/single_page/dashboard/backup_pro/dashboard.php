@@ -11,7 +11,7 @@
  
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;
 
-use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
+use Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro\Abstractcontroller;
 
 /**
  * mithra62 - Concrete5 Package Dashboard Controller
@@ -21,7 +21,7 @@ use mithra62\BackupPro\Platforms\Controllers\Concrete5Admin;
  * @package Concrete5
  * @author Eric Lamb <eric@mithra62.com>
  */
-class Dashboard extends Concrete5Admin
+class Dashboard extends Abstractcontroller
 {
     /**
      * Dashboard View Action
@@ -109,4 +109,48 @@ class Dashboard extends Concrete5Admin
         
         $this->prepView('file_backups', $variables);
     } 
+    
+    /**
+     * Delete Backup Confirmation Action
+     */
+    public function delete_backups()
+    {
+        $delete_backups = $this->platform->getPost('backups');
+        $val = \Loader::helper('validation/form');
+        $val->addRequiredToken('bp3_remove_backups_confirm');
+        
+        if( !$delete_backups  )
+        {
+		    $this->redirect('/dashboard/backup_pro/dashboard?backups_not_found=yes');
+		    exit;
+        }
+        
+        if( !$val->test() )
+        {
+            $this->redirect('/dashboard/backup_pro/dashboard?token_fail=yes');
+            exit;            
+        }
+    
+        $type = $this->platform->getPost('type');
+        $backups = $this->validateBackups($delete_backups, $type);
+        $variables = array(
+            'settings' => $this->settings,
+            'backups' => $backups,
+            'backup_type' => $type,
+            'method' => $this->platform->getPost('method'),
+            'errors' => $this->errors,
+            'pageTitle' => $this->services['lang']->__('delete_backup')
+        );
+    
+        if( $type == 'files' )
+        {
+            //$breadcrumbs[ee('CP/URL', 'addons/settings/backup_pro/file_backups')->compile()] = $this->services['lang']->__('file_backups');
+        }
+        else
+        {
+            //$breadcrumbs[ee('CP/URL', 'addons/settings/backup_pro/db_backups')->compile()] = $this->services['lang']->__('database_backups');
+        }
+    
+        $this->prepView('delete_confirm', $variables);
+    }
 }

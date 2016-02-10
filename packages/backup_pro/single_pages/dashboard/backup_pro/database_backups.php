@@ -34,17 +34,20 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
 	<?php else: ?>
 	
 	
-		<form name="remove_backups" action="<?php echo $url_base; ?>confirm_remove_backup" method="post"  />
+		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post"  />
 		<input type="hidden" name="type" id="hidden_backup_type" value="database" />	
         <?php 
+        $token = Loader::helper('validation/token');
+        $token->output('bp3_remove_backups_confirm');
+        
         $options = array('enable_type' => 'no', 'enable_editable_note' => 'yes', 'enable_actions' => 'yes', 'enable_delete' => 'yes');
         extract($options);
         $backups = $backups['database'];
         include '_includes/_backup_table.php';
         ?>		
-        <div class="buttons right" style="float:right">
-            <?php //submit_button($view_helper->m62Lang('delete_backups'), 'primary', '_remove_backup_button');?>
-        </div>
+            <button name="_remove_backup_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
+                <?php echo $view_helper->m62Lang('delete_selected'); ?>
+            </button>
 		</form>		
 	<?php endif; ?>
 
