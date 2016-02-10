@@ -98,13 +98,13 @@ class Manage extends Abstractcontroller
         $backups = $this->validateBackups($delete_backups, $type);
         if( $this->services['backups']->setBackupPath($this->settings['working_directory'])->removeBackups($backups) )
         {
-            ee()->session->set_flashdata('message_success', $this->services['lang']->__('backups_deleted'));
-            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro'));
+		    $this->redirect('/dashboard/backup_pro/dashboard?backups_deleted=yes');
+		    exit;
         }
         else
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__('backup_delete_failure'));
-            $this->platform->redirect(ee('CP/URL', 'addons/settings/backup_pro'));
+		    $this->redirect('/dashboard/backup_pro/dashboard?backups_delete_fail=yes');
+		    exit;
         }
     }
 }

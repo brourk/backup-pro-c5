@@ -39,8 +39,8 @@ abstract class Abstractcontroller extends Concrete5Admin
    {
        if(!$delete_backups || count($delete_backups) == 0)
        {
-           ee()->session->set_flashdata('message_error', $this->services['lang']->__('backups_not_found'));
-           $this->platform->redirect($this->url_base.'index');
+		    $this->redirect('/dashboard/backup_pro/dashboard?backups_not_found=yes');
+		    exit;
        }
    
        $encrypt = $this->services['encrypt'];

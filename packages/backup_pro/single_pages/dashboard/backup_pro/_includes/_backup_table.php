@@ -92,7 +92,7 @@
 		<?php endif; ?>
         <?php if( $backup['can_download'] ): 
         $encoded_name = urlencode($view_helper->m62Encode($backup['details_file_name']));
-        $download_url = 'd';// wp_nonce_url($url_base.'download&noheader=true&id='.$encoded_name.'&type='.$backup['backup_type'], $encoded_name);
+        $download_url = $this->url('/dashboard/backup_pro/manage/download?id='.$encoded_name.'&type='.$backup['backup_type']);// wp_nonce_url($url_base.'download&noheader=true&id='.$encoded_name.'&type='.$backup['backup_type'], $encoded_name);
         ?>
     		<a href="<?php echo $download_url;?>" title="<?php echo $view_helper->m62Lang('download'); ?>" id="download_link_<?php echo $count; ?>">
     			<img src="<?php echo $bp_static_path; ?>/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="">

@@ -17,7 +17,10 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
             $token->output('bp3_remove_backups_confirmed');
             ?>			
 			<input type="hidden" value="<?php echo $backup_type; ?>" name="type" />
-			<?php include '_includes/_backup_table.php'; ?>
+			<?php 
+			$options = array('enable_type' => 'yes', 'enable_editable_note' => 'no', 'enable_actions' => 'no', 'enable_delete' => 'no');
+			extract($options);
+			include '_includes/_backup_table.php'; ?>
 			
 			
 			<div class="panel-footer"><button name="submit_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
