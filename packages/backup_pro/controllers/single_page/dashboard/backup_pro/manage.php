@@ -107,4 +107,49 @@ class Manage extends Abstractcontroller
 		    exit;
         }
     }
+
+    /**
+     * Restore database action
+     */
+    public function restore_database()
+    {
+        $val = \Loader::helper('validation/form');
+        $val->addRequiredToken('bp3_restore_db_confirm');
+        if(!$val->test())
+        {
+            $this->redirect('/dashboard/backup_pro/dashboard?restore_db_xss_fail=yes');
+            exit;
+        }
+        
+        $encrypt = $this->services['encrypt'];
+        $file_name = $encrypt->decode(urldecode($this->platform->getPost('id')));
+        $file = $this->getDbBackupMetaName($file_name);
+        $backup_info = $this->services['backups']->setLocations($this->settings['storage_details'])->getBackupData($file);
+        $restore_file_path = false;
+        foreach($backup_info['storage_locations'] AS $storage_location)
+        {
+            if( $storage_location['obj']->canRestore() )
+            {
+                $restore_file_path = $storage_location['obj']->getFilePath($backup_info['file_name'], $backup_info['backup_type']); //next, get file path
+                break;
+            }
+        }
+    
+        if($restore_file_path && file_exists($restore_file_path))
+        {
+            $db_info = $this->platform->getDbCredentials();
+            $options = $this->settings;
+            $options['file_name'] = $restore_file_path;
+            if( $this->services['restore']->setDbInfo($db_info)->setBackupInfo($backup_info)->database($db_info['database'], $options, $this->services['shell']) )
+            {
+                $this->redirect('/dashboard/backup_pro/dashboard?db_restored=yes');
+                exit;
+            }
+        }
+        else
+        {
+            $this->redirect('/dashboard/backup_pro/dashboard?db_restore_not_found=yes');
+            exit;
+        }
+    }    
 }

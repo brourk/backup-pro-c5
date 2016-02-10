@@ -70,14 +70,18 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
 			
 		<div id="restore_running_details"  style="display:none" >
 			<div id="backup_instructions">
-				{'restore_in_progress_instructions'|m62Lang}
+				<?php echo $view_helper->m62Lang('restore_in_progress_instructions'); ?>
 			</div>			
-			<br />{'restore_in_progress'|m62Lang}
-			<img src="{$module_dir|escape:'htmlall':'UTF-8'}views/img/indicator.gif" id="animated_image" />
+			<br /><?php echo $view_helper->m62Lang('restore_in_progress'); ?>
+			<img src="<?php echo $bp_static_path; ?>/images/indicator.gif" id="animated_image" />
 		</div>
 		
-		<form name="remove_backups" action="{$link->getAdminLink('AdminBackupProManage')|escape:'html':'UTF-8'}&amp;section=restore_db" method="POST"  >
-			<input type="hidden" name="id" value="{$backup['details_file_name']|m62Encode}" />
+		<form name="remove_backups" action="<?php echo $this->url('/dashboard/backup_pro/manage/restore_database'); ?>" method="POST"  >
+            <?php 
+            $token = Loader::helper('validation/token');
+            $token->output('bp3_restore_db_confirm');
+            ?>		
+			<input type="hidden" name="id" value="<?php echo urlencode($view_helper->m62Encode($backup['details_file_name'])); ?>" />
 			<div class="panel-footer"><button name="submit_button" class="btn btn-primary" value="1" id="_restore_direct" type="submit">
 				<?php echo $view_helper->m62Lang('restore_db'); ?>
 			</button>

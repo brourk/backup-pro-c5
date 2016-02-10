@@ -72,6 +72,11 @@ class Dashboard extends Abstractcontroller
         if( $this->platform->getPost('backups_deleted') == 'yes' )
         {
             $variables['success'] = $this->services['lang']->__('backups_deleted');
+        }  
+        
+        if( $this->platform->getPost('db_restored') == 'yes' )
+        {
+            $variables['success'] = $this->services['lang']->__('database_restored');
         }        
         
         
