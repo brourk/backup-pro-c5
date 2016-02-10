@@ -12,12 +12,12 @@
     <tr class="even">
     	<td width='50%' style="width:50%;"><?php echo $view_helper->m62Lang($key); ?></td>
     	<td style="width:50%;">
-    		<div class="select_all"><?php echo $cron['cmd']; ?></div>
+    		<div class="select_all">0 * * * * * curl <?php echo $context->url($cron['url']); ?></div>
     	</td>
     	<td style="width:50%;">
-    		<a href="<?php echo $cron['url']; ?>" class="test_cron" rel="<?php echo $key; ?>">
-    			<img src="<?php echo $theme_folder_url; ?>/backup_pro/admin/images/test.png" />
-    		</a> <img src="<?php echo $theme_folder_url; ?>/backup_pro/admin/images/indicator.gif" id="animated_<?php echo $key; ?>" style="display:none" />
+    		<a href="<?php echo $context->url($cron['url']); ?>" class="test_cron" rel="<?php echo $key; ?>">
+    			<img src="<?php echo $bp_static_path; ?>/images/test.png" />
+    		</a> <img src="<?php echo $bp_static_path; ?>/images/indicator.gif" id="animated_<?php echo $key; ?>" style="display:none" />
     	</td>
     </tr>
     <?php endforeach; ?>
