@@ -64,6 +64,11 @@ class Dashboard extends Abstractcontroller
             'pageTitle' => $this->services['lang']->__('dashboard')
         );
         
+        if( $this->platform->getPost('backups_not_found') == 'yes' )
+        {
+            $variables['error'] = $this->services['lang']->__('backup_progress_bar_stop');
+        }        
+        
         $this->prepView('dashboard', $variables);
     
     }
@@ -83,8 +88,14 @@ class Dashboard extends Abstractcontroller
             'backups' => $backups,
             'errors' => $this->errors,
             'method' => $this->platform->getPost('method'),
-            'pageTitle' => $this->services['lang']->__('database_backups')
+            'pageTitle' => $this->services['lang']->__('database_backups'),
+            'backup_complete' => $this->platform->getPost('backup_complete')
         );  
+        
+        if( $this->platform->getPost('backup_complete') == 'yes' )
+        {
+            $variables['success'] = $this->services['lang']->__('backup_progress_bar_stop');
+        }        
         
         $this->prepView('database_backups', $variables);
     }
@@ -104,8 +115,14 @@ class Dashboard extends Abstractcontroller
             'backups' => $backups,
             'errors' => $this->errors,
             'method' => $this->platform->getPost('method'),
-            'pageTitle' => $this->services['lang']->__('file_backups')
-        );  
+            'pageTitle' => $this->services['lang']->__('file_backups'),
+            'backup_complete' => $this->platform->getPost('backup_complete')
+        ); 
+        
+        if( $this->platform->getPost('backup_complete') == 'yes' )
+        {
+            $variables['success'] = $this->services['lang']->__('backup_progress_bar_stop');
+        }        
         
         $this->prepView('file_backups', $variables);
     } 

@@ -91,7 +91,7 @@ class Settings extends Abstractcontroller
         
         if( $this->platform->getPost('update') == 'yes' )
         {
-            $variables['message'] = $this->services['lang']->__('settings_updated');
+            $variables['success'] = $this->services['lang']->__('settings_updated');
         }
 
         $variables['section'] = $section;
