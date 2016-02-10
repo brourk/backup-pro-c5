@@ -67,7 +67,14 @@ class Dashboard extends Abstractcontroller
         if( $this->platform->getPost('backups_not_found') == 'yes' )
         {
             $variables['error'] = $this->services['lang']->__('backup_progress_bar_stop');
+        }  
+        
+        if( $this->platform->getPost('backups_deleted') == 'yes' )
+        {
+            $variables['success'] = $this->services['lang']->__('backups_deleted');
         }        
+        
+        
         
         $this->prepView('dashboard', $variables);
     
@@ -169,5 +176,23 @@ class Dashboard extends Abstractcontroller
         }
     
         $this->prepView('delete_confirm', $variables);
+    }
+    
+    public function restore()
+    {
+        $encrypt = $this->services['encrypt'];
+        $file_name = $encrypt->decode($this->platform->getPost('id'));
+        $storage = $this->services['backup']->setStoragePath($this->settings['working_directory']);
+    
+        $file = $storage->getStorage()->getDbBackupNamePath($file_name);
+        $backup_info = $this->services['backups']->setLocations($this->settings['storage_details'])->getBackupData($file);
+        $variables = array(
+            'settings' => $this->settings,
+            'backup' => $backup_info,
+            'errors' => $this->errors,
+            'method' => 'db_backups',
+        );
+        
+        $this->prepView('restore_confirm', $variables);
     }
 }

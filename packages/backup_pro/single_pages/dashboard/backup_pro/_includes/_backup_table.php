@@ -82,7 +82,7 @@
             <?php if( $backup['backup_type'] == 'database'): ?> 
             
             <?php if( $backup['can_restore'] ): ?>
-    			<a href="<?php echo $url_base;?>&section=restore&type=database&id=<?php echo urlencode($view_helper->m62Encode($backup['details_file_name'])); ?>&type=<?php echo $view_helper->m62Escape($backup['backup_type']); ?>" title="<?php echo $view_helper->m62Lang('restore'); ?>" id="restore_link_<?php echo $count; ?>">
+    			<a href="<?php echo $this->url('/dashboard/backup_pro/dashboard/restore?id='.urlencode($view_helper->m62Encode($backup['details_file_name'])).'&type='.$backup['backup_type']); ?>" title="<?php echo $view_helper->m62Lang('restore'); ?>" id="restore_link_<?php echo $count; ?>">
     				<img src="<?php echo $bp_static_path; ?>/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="">
     			</a> 
             <?php else: ?>
