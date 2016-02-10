@@ -22,11 +22,11 @@ if(count($bp_errors) >= 1)
 	    }
 	    elseif( $_error == 'no_db_backups_exist_yet' )
 	    {
-	        echo ' <a href="'.$url_base.'backup&type=database">'.$view_helper->m62Lang('would_you_like_to_backup_database_now').'</a>';
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/backup_database').'">'.$view_helper->m62Lang('would_you_like_to_backup_database_now').'</a>';
 	    }
 	    elseif( $_error == 'no_file_backups_exist_yet' )
 	    {
-	        echo ' <a href="'.$url_base.'backup&type=files">'.$view_helper->m62Lang('would_you_like_to_backup_files_now').'</a>';
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/backup_files').'">'.$view_helper->m62Lang('would_you_like_to_backup_files_now').'</a>';
 	    }
 	    elseif( $_error == 'no_backup_file_location' )
 	    {
@@ -39,7 +39,7 @@ if(count($bp_errors) >= 1)
 	            $lang = sprintf(
 	                $view_helper->m62Lang('db_backup_past_expectation'),
 	                $view_helper->getRelativeDateTime($backup_meta['database']['newest_backup_taken_raw'], false),
-	                $url_base.'backup&type=database'
+	                $context->url('/dashboard/backup_pro/backup_database')
 	            );
 	        }
 	        else if ( $error == 'file_backup_past_expectation_stub' )
@@ -47,7 +47,7 @@ if(count($bp_errors) >= 1)
 	            $lang = sprintf(
 	                $view_helper->m62Lang('files_backup_past_expectation'),
 	                $view_helper->getRelativeDateTime($backup_meta['files']['newest_backup_taken_raw'], false),
-	                $url_base.'backup&type=files'
+	                $context->url('/dashboard/backup_pro/backup_files')
 	            );
 	        }
 	        echo $lang;
