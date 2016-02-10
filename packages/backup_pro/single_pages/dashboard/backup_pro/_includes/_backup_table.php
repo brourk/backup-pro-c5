@@ -3,13 +3,14 @@
 		<input type="hidden" name="backups[]" value="<?php echo urlencode($view_helper->m62Encode($backup['file_name'])); ?>" />
 	<?php endforeach; ?>
 <?php endif; ?>
+<input type="hidden" value="<?php echo $this->url('/dashboard/backup_pro/manage/update_backup_note'); ?>" name="__note_url" id="__note_url" />
 <table width="100%" class="data existing_backups table" id="mainTable" border="0" cellpadding="0" cellspacing="0">
 <thead>
 	<tr class="odd">
 		<th></th>
 	
 		<?php if(isset($enable_delete) && $enable_delete == 'yes' ): ?>
-		<th><a href="javascript:;" class="bp3_toggle_all">All</a></th>
+		<th><input name="bp_toggle_all" value="1" type="checkbox" class="bp_toggle_all" /></th>
 		<?php endif; ?>
 		<th></th>
 		<th></th>
