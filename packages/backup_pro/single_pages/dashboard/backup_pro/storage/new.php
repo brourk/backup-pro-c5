@@ -34,7 +34,7 @@ $view_helper->partial('storage/_form', $vars, $this);
 ?>
 	<div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-		<?php echo $ui->submit(t($view_helper->m62Lang('add_storage_location')), 'mail-settings-form','right','btn-primary')?>
+        <input type="submit" name="ccm-submit-m62_settings_submit" id="m62_settings_submit" value="<?php echo t($view_helper->m62Lang('add_storage_location')); ?>" class="btn btn-primary pull-right">
         </div>
 	</div>
 </form>
