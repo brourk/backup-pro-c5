@@ -56,6 +56,7 @@
         	<div class="col-sm-7">
                 <?php echo $form->checkbox('regex_file_exclude', 1, $form_data['regex_file_exclude'])?>
                 <span class="small"><?php echo $view_helper->m62Lang('regex_file_exclude_instructions'); ?></span>
+                <?php echo $view_helper->m62FormErrors($form_errors['regex_file_exclude']); ?>
             </div>
         </div>
     </div>    

@@ -74,6 +74,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('allow_duplicates', 1, $form_data['allow_duplicates'])?>
             <span class="small"><?php echo $view_helper->m62Lang('allow_duplicates_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['allow_duplicates']); ?>
         </div>
     </div>
 </div>
@@ -98,6 +99,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('relative_time', 1, $form_data['relative_time'])?>
             <span class="small"><?php echo $view_helper->m62Lang('relative_time_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['relative_time']); ?>
         </div>
     </div>
 </div>

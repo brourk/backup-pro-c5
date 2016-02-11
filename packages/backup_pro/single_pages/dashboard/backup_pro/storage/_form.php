@@ -32,6 +32,7 @@ $view_helper->partial($_form_template, $vars, $context); ?>
     	<div class="col-sm-7">
             <?php echo $form->checkbox('storage_location_status', 1, $form_data['storage_location_status'])?>
             <span class="small"><?php echo $view_helper->m62Lang('storage_location_status_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['storage_location_status']); ?>
         </div>
     </div>
 </div>
@@ -42,6 +43,7 @@ $view_helper->partial($_form_template, $vars, $context); ?>
     	<div class="col-sm-7">
             <?php echo $form->checkbox('storage_location_file_use', 1, $form_data['storage_location_file_use'])?>
             <span class="small"><?php echo $view_helper->m62Lang('storage_location_file_use_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['storage_location_file_use']); ?>
         </div>
     </div>
 </div>
@@ -52,6 +54,7 @@ $view_helper->partial($_form_template, $vars, $context); ?>
     	<div class="col-sm-7">
             <?php echo $form->checkbox('storage_location_db_use', 1, $form_data['storage_location_db_use'])?>
             <span class="small"><?php echo $view_helper->m62Lang('storage_location_db_use_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['storage_location_db_use']); ?>
         </div>
     </div>
 </div>
@@ -62,6 +65,7 @@ $view_helper->partial($_form_template, $vars, $context); ?>
     	<div class="col-sm-7">
             <?php echo $form->checkbox('storage_location_include_prune', 1, $form_data['storage_location_include_prune'])?>
             <span class="small"><?php echo $view_helper->m62Lang('storage_location_include_prune_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['storage_location_include_prune']); ?>
         </div>
     </div>
 </div>
