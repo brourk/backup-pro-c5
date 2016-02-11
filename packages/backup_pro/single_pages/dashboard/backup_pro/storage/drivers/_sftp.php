@@ -84,14 +84,14 @@
 
 <div class="row">
 	<div class="form-group <?php if($form_errors['sftp_timeout']): ?>has-error<?php endif; ?>">
-		<label for="s3_access_key" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('s3_access_key'))?></label>
+		<label for="sftp_timeout" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('sftp_timeout'))?></label>
 		<div class="col-sm-7">
 			<div class="input-group">
-			<?php echo $form->text('s3_access_key', $form_data['s3_access_key'])?>
+			<?php echo $form->text('sftp_timeout', $form_data['sftp_timeout'])?>
 			<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
 			</div>
-			<div class="help-block small"><?php echo $view_helper->m62Lang('s3_access_key_instructions'); ?></div>
-			<?php echo $view_helper->m62FormErrors($form_errors['s3_access_key']); ?>
+			<div class="help-block small"><?php echo $view_helper->m62Lang('sftp_timeout_instructions'); ?></div>
+			<?php echo $view_helper->m62FormErrors($form_errors['sftp_timeout']); ?>
 		</div>
 	</div>
 </div>
