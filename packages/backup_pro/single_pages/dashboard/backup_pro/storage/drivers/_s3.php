@@ -74,6 +74,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('s3_reduced_redundancy', 1, $form_data['s3_reduced_redundancy'])?>
             <span class="small"><?php echo $view_helper->m62Lang('s3_reduced_redundancy_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['s3_reduced_redundancy']); ?>
         </div>
     </div>
 </div>

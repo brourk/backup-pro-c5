@@ -77,6 +77,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('ftp_passive', 1, $form_data['ftp_passive'])?>
             <span class="small"><?php echo $view_helper->m62Lang('ftp_passive_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['ftp_passive']); ?>
         </div>
     </div>
 </div>
@@ -87,6 +88,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('ftp_ssl', 1, $form_data['ftp_ssl'])?>
             <span class="small"><?php echo $view_helper->m62Lang('ftp_ssl_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['ftp_ssl']); ?>
         </div>
     </div>
 </div>

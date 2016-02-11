@@ -60,6 +60,7 @@
     	<div class="col-sm-7">
             <?php echo $form->checkbox('gcs_reduced_redundancy', 1, $form_data['gcs_reduced_redundancy'])?>
             <span class="small"><?php echo $view_helper->m62Lang('gcs_reduced_redundancy_instructions'); ?></span>
+            <?php echo $view_helper->m62FormErrors($form_errors['gcs_reduced_redundancy']); ?>
         </div>
     </div>
 </div>
