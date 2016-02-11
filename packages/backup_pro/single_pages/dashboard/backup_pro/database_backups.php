@@ -44,10 +44,9 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
         extract($options);
         $backups = $backups['database'];
         include '_includes/_backup_table.php';
-        ?>		
-            <button name="_remove_backup_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
-                <?php echo $view_helper->m62Lang('delete_selected'); ?>
-            </button>
+        ?>
+            
+            <input type="submit" name="_remove_backup_button" id="_remove_backup_button" value="<?php echo t($view_helper->m62Lang('delete_selected')); ?>" class="btn btn-primary pull-right">
 		</form>		
 	<?php endif; ?>
 

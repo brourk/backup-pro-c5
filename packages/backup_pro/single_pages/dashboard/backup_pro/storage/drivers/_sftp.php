@@ -3,7 +3,7 @@
 		<label for="sftp_host" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('sftp_host'))?></label>
 		<div class="col-sm-7">
 			<div class="input-group">
-			<?php echo $form->text('sftp_username', $form_data['sftp_host'])?>
+			<?php echo $form->text('sftp_host', $form_data['sftp_host'])?>
 			<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
 			</div>
 			<div class="help-block small"><?php echo $view_helper->m62Lang('sftp_host_instructions'); ?></div>

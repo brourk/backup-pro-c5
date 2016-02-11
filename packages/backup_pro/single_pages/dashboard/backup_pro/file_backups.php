@@ -43,9 +43,8 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'file_ba
         ?>	
 		<input type="hidden" name="type" id="hidden_backup_type" value="files" />	
 		
-        <button name="_remove_backup_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
-            <?php echo $view_helper->m62Lang('delete_selected'); ?>
-        </button>
+        
+            <input type="submit" name="_remove_backup_button" id="_remove_backup_button" value="<?php echo t($view_helper->m62Lang('delete_selected')); ?>" class="btn btn-primary pull-right">
 		
 		</form>
 							

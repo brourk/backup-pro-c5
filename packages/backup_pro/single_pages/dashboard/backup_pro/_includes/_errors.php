@@ -14,7 +14,7 @@ if(count($bp_errors) >= 1)
 	    }
 	    elseif( $key == 'license_number' )
 	    {
-	        //echo ' <a href="'.$url_base.'settings&section=license">'.$view_helper->m62Lang('enter_license').'</a> or <a href="https://mithra62.com/projects/view/backup-pro">'.$view_helper->m62Lang('purchase_a_license').'</a>';
+	        echo ' <a href="'.$context->url('/dashboard/backup_pro/settings/license').'">'.$view_helper->m62Lang('enter_license').'</a> or <a href="https://mithra62.com/projects/view/backup-pro">'.$view_helper->m62Lang('purchase_a_license').'</a>';
 	    }
 	    elseif( $_error == 'invalid_working_directory' )
 	    {
