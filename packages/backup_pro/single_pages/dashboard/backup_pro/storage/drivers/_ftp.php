@@ -19,7 +19,7 @@
     
     <div class="row">
     	<div class="form-group <?php if($form_errors['ftp_username']): ?>has-error<?php endif; ?>">
-    		<label for="max_db_backups" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('ftp_username'))?></label>
+    		<label for="ftp_username" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('ftp_username'))?></label>
     		<div class="col-sm-7">
     			<div class="input-group">
     			<?php echo $form->text('ftp_username', $form_data['ftp_username'])?>
@@ -100,7 +100,7 @@
     
     <div class="row">
     	<div class="form-group <?php if($form_errors['ftp_timeout']): ?>has-error<?php endif; ?>">
-    		<label for="ftp_port" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('ftp_timeout'))?></label>
+    		<label for="ftp_timeout" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('ftp_timeout'))?></label>
     		<div class="col-sm-7">
     			<div class="input-group">
     			<?php echo $form->text('ftp_timeout', $form_data['ftp_timeout'])?>

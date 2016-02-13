@@ -6,7 +6,7 @@
 <fieldset>
 <div class="row">
 	<div class="form-group <?php if($form_errors['storage_location_name']): ?>has-error<?php endif; ?>">
-		<label for="max_db_backups" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('storage_location_name'))?></label>
+		<label for="storage_location_name" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('storage_location_name'))?></label>
 		<div class="col-sm-7">
 			<div class="input-group">
 			<?php echo $form->text('storage_location_name', $form_data['storage_location_name'])?>

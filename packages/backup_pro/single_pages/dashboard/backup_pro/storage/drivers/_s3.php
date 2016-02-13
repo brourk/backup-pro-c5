@@ -16,7 +16,7 @@
 
 <div class="row">
 	<div class="form-group <?php if($form_errors['s3_secret_key']): ?>has-error<?php endif; ?>">
-		<label for="rcf_username" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('rcf_username'))?></label>
+		<label for="s3_secret_key" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('s3_secret_key'))?></label>
 		<div class="col-sm-7">
 			<div class="input-group">
 			<?php echo $form->password('s3_secret_key', $form_data['s3_secret_key'])?>
