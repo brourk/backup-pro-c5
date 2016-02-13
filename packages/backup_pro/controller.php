@@ -38,7 +38,7 @@ class Controller extends Package
      * Minimum version of Concrete5 Backuop Pro supports
      * @var string
      */
-    protected $appVersionRequired = '5.7.4.3b1';
+    protected $appVersionRequired = '5.7.0';
     
     /**
      * Versoin of Backup Pro 
