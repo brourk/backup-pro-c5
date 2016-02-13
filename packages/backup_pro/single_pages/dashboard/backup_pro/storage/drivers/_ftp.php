@@ -1,5 +1,5 @@
 <fieldset>
-<legend>Email Inbox Details</legend>    
+<legend><?php echo $view_helper->m62Lang('ftp_connection_details'); ?></legend>    
     <input type="hidden" value="0" name="ftp_passive" />
     <input type="hidden" value="0" name="ftp_ssl" />
     
@@ -72,6 +72,10 @@
     		</div>
     	</div>
     </div>
+
+</fieldset>
+<fieldset>
+<legend><?php echo $view_helper->m62Lang('advanced_options'); ?></legend>      
     
     <div class="row">
     	<div class="form-group <?php if(is_array($form_errors['ftp_passive'])): ?>has-error<?php endif; ?>">
@@ -83,10 +87,6 @@
             </div>
         </div>
     </div>
-
-</fieldset>
-<fieldset>
-<legend>Email Inbox Details</legend>      
     <div class="row">
     	<div class="form-group <?php if(is_array($form_errors['ftp_ssl'])): ?>has-error<?php endif; ?>">
         	<label class="control-label col-sm-3" for="ftp_ssl"><?php echo t($view_helper->m62Lang('ftp_ssl'))?></label>
