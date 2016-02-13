@@ -65,9 +65,9 @@
     		<div class="col-sm-7">
     			<div class="input-group">
     			<?php echo $form->text('s3_optional_prefix', $form_data['s3_optional_prefix'])?>
-    			<span class="input-group-addon">/path/to/prefix</span>
+    			<span class="input-group-addon"><?php echo t($view_helper->m62Lang('path_to_prefix_example')); ?></span>
     			</div>
-    			<div class="help-block small"><?php echo $view_helper->m62Lang('s3_optional_prefix_instructions'); ?></div>
+    			<div class="help-block small"><?php echo t($view_helper->m62Lang('s3_optional_prefix_instructions')); ?></div>
     			<?php echo $view_helper->m62FormErrors($form_errors['s3_optional_prefix']); ?>
     		</div>
     	</div>

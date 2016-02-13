@@ -35,7 +35,7 @@
 		<div class="col-sm-7">
 			<div class="input-group">
 			<?php echo $form->text('dropbox_prefix', $form_data['dropbox_prefix'])?>
-			<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+			<span class="input-group-addon"><?php echo t($view_helper->m62Lang('path_to_prefix_example')); ?></span>
 			</div>
 			<div class="help-block small"><?php echo $view_helper->m62Lang('dropbox_prefix_instructions'); ?></div>
 			<?php echo $view_helper->m62FormErrors($form_errors['dropbox_prefix']); ?>
