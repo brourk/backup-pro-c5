@@ -60,7 +60,7 @@
 		<div class="col-sm-7">
 			<div class="input-group">
 			<?php echo $form->text('s3_optional_prefix', $form_data['s3_optional_prefix'])?>
-			<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+			<span class="input-group-addon">/path/to/prefix</span>
 			</div>
 			<div class="help-block small"><?php echo $view_helper->m62Lang('s3_optional_prefix_instructions'); ?></div>
 			<?php echo $view_helper->m62FormErrors($form_errors['s3_optional_prefix']); ?>

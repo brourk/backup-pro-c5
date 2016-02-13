@@ -179,7 +179,9 @@ class Settings extends Abstractcontroller
 
         $variables['section'] = 'storage_locations';
         $variables['engine'] = $engine;
+        $variables['engine_desc'] = $this->services['lang']->__($variables['storage_engine']['desc']);
         $variables['pageTitle'] = $this->services['lang']->__('add_storage_location').' ('.$this->services['lang']->__($variables['storage_engine']['name']).')';
+        
         $this->prepView('storage/new', $variables);  
     }
     

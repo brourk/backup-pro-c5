@@ -1,3 +1,6 @@
+<fieldset>
+<legend><?php echo $view_helper->m62Lang('dropbox_details'); ?></legend>
+
 <div class="row">
 	<div class="form-group <?php if($form_errors['backup_store_location']): ?>has-error<?php endif; ?>">
 		<label for="dropbox_access_token" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('dropbox_access_token'))?></label>
@@ -39,3 +42,5 @@
 		</div>
 	</div>
 </div>
+
+</fieldset>

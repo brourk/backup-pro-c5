@@ -3,6 +3,7 @@
 <input type="hidden" value="0" name="storage_location_db_use" />
 <input type="hidden" value="0" name="storage_location_include_prune" />
 
+<fieldset>
 <div class="row">
 	<div class="form-group <?php if($form_errors['storage_location_name']): ?>has-error<?php endif; ?>">
 		<label for="max_db_backups" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('storage_location_name'))?></label>
@@ -16,6 +17,7 @@
 		</div>
 	</div>
 </div>
+</fieldset>
 
 <?php 
 $vars = array(
@@ -26,6 +28,8 @@ $vars = array(
 );
 $view_helper->partial($_form_template, $vars, $context); ?>
 
+<fieldset>
+<legend><?php echo $view_helper->m62Lang('extras'); ?></legend>
 <div class="row">
 	<div class="form-group <?php if(is_array($form_errors['storage_location_status'])): ?>has-error<?php endif; ?>">
     	<label class="control-label col-sm-3" for="storage_location_status"><?php echo t($view_helper->m62Lang('storage_location_status'))?></label>
@@ -69,3 +73,4 @@ $view_helper->partial($_form_template, $vars, $context); ?>
         </div>
     </div>
 </div>
+</fieldset>

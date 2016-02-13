@@ -1,5 +1,6 @@
 <?php 
 $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  
+echo '<p>'.$engine_desc.'</p>';
 $view_helper->partial('settings/_settings_nav', array('active_tab' => $section), $this);
 ?>
 
@@ -7,7 +8,7 @@ $view_helper->partial('settings/_settings_nav', array('active_tab' => $section),
 
 <div class="panel">
 <?php $view_helper->partial('storage/_submenu', array('available_storage_engines' => $available_storage_engines), $this); ?>
-
+<br clear="all" />
 <?php if( $form_has_errors ): ?>
 	<div class="alert alert-danger">Woops! Looks like we have an issue...</div>
 <?php endif; ?>  
@@ -27,7 +28,8 @@ $vars = array(
     'form' => $form, 
     '_form_template' => $_form_template,
     'form_data' => $form_data,
-    'form_errors' => $form_errors
+    'form_errors' => $form_errors,
+    'engine_desc' => $engine_desc
 );
 
 $view_helper->partial('storage/_form', $vars, $this); 

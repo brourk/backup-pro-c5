@@ -127,7 +127,7 @@ class Controller extends Package
     public function on_start()
     {
         //load up composer goodies
-        require $this->getPackagePath() . '/vendor/autoload.php';
+        require $this->getPackagePath() . '/libraries/vendor/autoload.php';
         
         //setup the view paths
         \Config::set('backup_pro.partial_path', __DIR__);
