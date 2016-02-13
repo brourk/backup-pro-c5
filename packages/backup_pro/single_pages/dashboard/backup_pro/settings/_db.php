@@ -166,7 +166,7 @@ $db_restore_methods = array('php' => 'PHP', 'mysql' => 'MySQL');
     
     <div class="row">
     	<div class="form-group <?php if($form_errors['db_backup_execute_post_sql']): ?>has-error<?php endif; ?>">
-    		<label for="db_backup_archive_post_sql" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('db_backup_execute_post_sql'))?></label>
+    		<label for="db_backup_execute_post_sql" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('db_backup_execute_post_sql'))?></label>
     		<div class="col-sm-7">
     		<?php echo $form->textarea('db_backup_execute_post_sql', $form_data['db_backup_execute_post_sql']); ?>
     		<div class="help-block small"><?php echo $view_helper->m62Lang('db_backup_execute_post_sql_instructions'); ?></div>

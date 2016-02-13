@@ -30,7 +30,7 @@
     
     <div class="row">
     	<div class="form-group <?php if($form_errors['backup_file_location']): ?>has-error<?php endif; ?>">
-    		<label for="backup_file_locations" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('backup_file_location'))?></label>
+    		<label for="backup_file_location" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('backup_file_location'))?></label>
     		<div class="col-sm-7">
     		<?php echo $form->textarea('backup_file_location', $form_data['backup_file_location']); ?>
     		<div class="help-block small"><?php echo $view_helper->m62Lang('backup_file_location_instructions'); ?></div>
