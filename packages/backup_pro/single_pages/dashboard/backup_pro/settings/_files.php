@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <fieldset>
 <input type="hidden" name="regex_file_exclude" value="0" />
     <div class="row">

@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <fieldset>
 <p><?php echo $view_helper->m62Lang('license_details_instructions'); ?></p>
     <div class="row">

@@ -23,6 +23,10 @@ use Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro\Backup;
  */
 class BackupFiles extends Backup
 {
+    /**
+     * (non-PHPdoc)
+     * @see \Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro\Backup::view()
+     */
     public function view($type = 'files')
     {
         parent::view('files');

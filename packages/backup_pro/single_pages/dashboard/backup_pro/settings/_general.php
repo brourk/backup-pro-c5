@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <fieldset>
 <input type="hidden" name="allow_duplicates" value="0" />
 <input type="hidden" name="relative_time" value="0" />

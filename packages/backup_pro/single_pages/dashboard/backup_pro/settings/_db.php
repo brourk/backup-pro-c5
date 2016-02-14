@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <fieldset>
 <?php 
 $db_backup_methods = array('php' => 'PHP', 'mysqldump' => 'MySQLDUMP');

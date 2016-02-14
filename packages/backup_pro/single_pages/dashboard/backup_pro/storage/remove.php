@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php 
 $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  
 $view_helper->partial('settings/_settings_nav', array('active_tab' => $section), $this);

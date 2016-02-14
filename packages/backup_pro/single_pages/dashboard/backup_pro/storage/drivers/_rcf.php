@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <fieldset>
 <legend><?php echo $view_helper->m62Lang('rcf_connection_details'); ?></legend>  
 

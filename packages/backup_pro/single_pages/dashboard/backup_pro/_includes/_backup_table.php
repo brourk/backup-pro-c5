@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php if(isset($enable_delete) && $enable_delete != 'yes' ): ?>
 	<?php foreach($backups AS $backup): ?>
 		<input type="hidden" name="backups[]" value="<?php echo urlencode($view_helper->m62Encode($backup['file_name'])); ?>" />

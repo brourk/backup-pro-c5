@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <input type="hidden" value="0" name="storage_location_status" />
 <input type="hidden" value="0" name="storage_location_file_use" />
 <input type="hidden" value="0" name="storage_location_db_use" />

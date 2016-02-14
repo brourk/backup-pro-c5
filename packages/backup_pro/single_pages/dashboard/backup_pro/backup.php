@@ -1,4 +1,4 @@
-
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php if( count($pre_backup_errors) != '0'): ?>
 	<h3><?php echo $view_helper->m62Lang('pre_backup_setting_issue_blurb'); ?>:</h3>
 	<?php $view_helper->partial('_includes/_errors', array('bp_errors' => $pre_backup_errors), $this);  ?>

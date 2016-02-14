@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <div id="container" class="row">
 <?php $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this); ?>
 <?php 

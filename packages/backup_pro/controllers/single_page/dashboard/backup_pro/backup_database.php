@@ -6,7 +6,7 @@
  * @copyright	Copyright (c) 2016, mithra62, Eric Lamb.
  * @link		http://mithra62.com/
  * @version		3.0
- * @filesource 	./packages/backup_pro/controllers/single_page/dashboard/backup_pro/settings.php
+ * @filesource 	./packages/backup_pro/controllers/single_page/dashboard/backup_pro/backup_database.php
  */
  
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;

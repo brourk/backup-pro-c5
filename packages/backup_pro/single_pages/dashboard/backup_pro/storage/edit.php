@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php 
 $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  
 echo '<p>'.$engine_desc.'</p>';

@@ -6,9 +6,9 @@
 	<property name="build_container_dir" value="${build_path}/backup_pro" />
 	<property name="main_files" value="packages" />
 	<property name="cms_root_path" value="${build_container_dir}/packages" /> 
-	<property name="vendor_path" value="${cms_root_path}/backup_pro/vendor" />
-	<property name="backup_pro_logic_base" value="${cms_root_path}/backup_pro/mithra62/BackupPro" />
-	<property name="jaeger_base" value="${cms_root_path}/backup_pro/mithra62" />
+	<property name="vendor_path" value="${cms_root_path}/backup_pro/libraries/vendor" />
+	<property name="backup_pro_logic_base" value="${cms_root_path}/backup_pro/libraries/mithra62/BackupPro" />
+	<property name="jaeger_base" value="${cms_root_path}/backup_pro/libraries/mithra62" />
 		
 	<property name="platform_theme_base" value="${build_container_dir}/packages/backup_pro/assets" />		
 	<property name="backup_pro_theme_base" value="${platform_theme_base}" />

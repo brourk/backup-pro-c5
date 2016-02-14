@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <input type="hidden" value="0" name="s3_reduced_redundancy" />
 <fieldset>
 <legend><?php echo $view_helper->m62Lang('s3_connection_details'); ?></legend> 

@@ -74,6 +74,18 @@ class Controller extends Package
             throw new \Exception('You must be run PHP 5.4 or greater to use this package.');
         }
         
+        if (!function_exists('mysqli_report') && !class_exists('PDO')) {
+            throw new \Exception('Backup Pro requires either the mysqli or PDO extension for database use.');
+        }
+        
+        if (!function_exists('mb_check_encoding')) {
+            throw new \Exception('Backup Pro requires the Multi Byte extension to ensure proper string encoding.');
+        }
+        
+        if (!function_exists('curl_init')) {
+            throw new \Exception('Backup Pro requires the Curl extension to transfer backups to remote locations.');
+        }
+        
         $pkg = parent::install();
         $page = SinglePage::add('/dashboard/backup_pro', $pkg);
         $page->updateCollectionName(t('Backup Pro'));

@@ -1,3 +1,4 @@
+<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <div class="panel">
 
 		<table class="table" border="0" cellspacing="0" cellpadding="0">

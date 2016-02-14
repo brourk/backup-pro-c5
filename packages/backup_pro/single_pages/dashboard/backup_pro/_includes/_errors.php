@@ -1,5 +1,6 @@
-<?php
+<?php 
 
+defined('C5_EXECUTE') or die('Access Denied.'); 
 if(count($bp_errors) >= 1)
 {
 	foreach($bp_errors AS $key => $_error)
