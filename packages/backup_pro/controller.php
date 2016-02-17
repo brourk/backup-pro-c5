@@ -128,8 +128,7 @@ class Controller extends Package
      * @todo add drop settings table
      * @see \Concrete\Core\Package\Package::uninstall()
      */
-    public function uninstall()
-    {
+    public function uninstall() {
         parent::uninstall();
     } 
     
