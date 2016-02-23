@@ -1,6 +1,6 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.');
-$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  ?>
+$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta), $this);  ?>
 
 
 

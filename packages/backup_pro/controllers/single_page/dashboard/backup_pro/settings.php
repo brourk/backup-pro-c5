@@ -93,8 +93,13 @@ class Settings extends Abstractcontroller
         {
             $variables['success'] = $this->services['lang']->__('settings_updated');
         }
-
+        
+        $backup = $this->services['backups'];
+        $backups = $backup->setBackupPath($this->settings['working_directory'])->getAllBackups($this->settings['storage_details']);
+        $backup_meta = $backup->getBackupMeta($backups);
+        
         $variables['section'] = $section;
+        $variables['backup_meta'] = $backup_meta;
         $variables['update'] = $update;
         $variables['db_tables'] = $this->services['db']->getTables();
         $variables['backup_cron_commands'] = $this->platform->getBackupCronCommands($this->settings);

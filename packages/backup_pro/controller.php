@@ -111,6 +111,12 @@ class Controller extends Package
         $sp->setAttribute('exclude_sitemapxml', true);
         $sp->setAttribute('exclude_search_index', true);
         $sp->setAttribute('exclude_nav', true);
+        
+        $sp = SinglePage::add('/backup_pro/api', $pkg);
+        $sp->setAttribute('exclude_page_list', true);
+        $sp->setAttribute('exclude_sitemapxml', true);
+        $sp->setAttribute('exclude_search_index', true);
+        $sp->setAttribute('exclude_nav', true);
         return $pkg;
         
     }

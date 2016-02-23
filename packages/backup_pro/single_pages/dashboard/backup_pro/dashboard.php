@@ -1,5 +1,5 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
-<?php $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this); ?>
+<?php $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta), $this); ?>
 <?php 
 $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'dashboard'), $this);
 $space_available_header = $view_helper->m62Lang('total_space_available');
