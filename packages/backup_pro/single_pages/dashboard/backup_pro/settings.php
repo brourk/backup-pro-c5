@@ -27,7 +27,8 @@ $vars = array(
     'form' => $form,
     'ia_cron_commands' => $ia_cron_commands,
     'backup_cron_commands' => $backup_cron_commands,
-    'db_tables' => $db_tables
+    'db_tables' => $db_tables,
+    'rest_api_route_entry' => $rest_api_route_entry
 );
 switch($section)
 {
@@ -35,6 +36,7 @@ switch($section)
 	case 'db':
 	case 'files':
 	case 'license':
+	case 'api':
 	case 'integrity_agent':
 	    $view_helper->partial('settings/_'.$section, $vars, $this);
 		break;
