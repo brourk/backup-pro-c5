@@ -38,7 +38,9 @@ class Cron extends Concrete5Front
         @session_write_close();
         $error = $this->services['errors'];
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
-        $errors = $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])->checkBackupDirs($backup->getStorage())->getErrors();
+        $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])
+                             ->checkWorkingDirectory($this->settings['working_directory'])
+                             ->checkBackupDirs($backup->getStorage());
     
         if( $error->totalErrors() == '0' )
         {
