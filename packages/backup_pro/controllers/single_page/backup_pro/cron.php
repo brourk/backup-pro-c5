@@ -12,6 +12,7 @@
 namespace Concrete\Package\BackupPro\Controller\SinglePage\BackupPro;
 
 use \mithra62\BackupPro\Platforms\Controllers\Concrete5Front;
+use \mithra62\BackupPro\Exceptions\BackupException;
 
 /**
  * mithra62 - Concrete5 Package Cron Controller
