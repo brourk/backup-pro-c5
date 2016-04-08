@@ -25,9 +25,11 @@ $vars = array(
     'form' => $form,
     '_form_template' => $_form_template,
     'form_data' => $form_data,
-    'form_errors' => $form_errors
+    'form_errors' => $form_errors,
+    'view_helper' => $view_helper,
 );
-$view_helper->partial($_form_template, $vars, $context); ?>
+
+Loader::packageElement($_form_template, 'backup_pro', $vars);?>
 
 <fieldset>
 <legend><?php echo $view_helper->m62Lang('extras'); ?></legend>

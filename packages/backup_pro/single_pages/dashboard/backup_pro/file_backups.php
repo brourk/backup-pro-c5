@@ -35,11 +35,18 @@ Loader::packageElement('_dashboard_nav', 'backup_pro', array('active_tab' => 'fi
 		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post">
         <?php 
         $token = Loader::helper('validation/token');
-        $token->output('bp3_remove_backups_confirm');        
-        $options = array('enable_type' => 'no', 'enable_editable_note' => 'yes', 'enable_actions' => 'yes', 'enable_delete' => 'yes');
-        extract($options);
-        $backups = $backups['files'];
-        include '../../../elements/_backup_table.php';
+        $token->output('bp3_remove_backups_confirm');
+        $options = array(
+            'enable_type' => 'no',
+            'enable_editable_note' =>
+            'yes', 'enable_actions' => 'yes',
+            'enable_delete' => 'yes',
+            'backups' => $backups['files'],
+            'context' => $this,
+            'view_helper' => $view_helper,
+            'bp_static_path' => $bp_static_path
+        );        
+        Loader::packageElement('_backup_table', 'backup_pro', $options);
         ?>	
 		<input type="hidden" name="type" id="hidden_backup_type" value="files" />	
 		

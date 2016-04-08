@@ -1,14 +1,21 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.');
-$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this);  
-$view_helper->partial('settings/_settings_nav', array('active_tab' => $section), $this);
+Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
+Loader::packageElement('settings/_settings_nav', 'backup_pro', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section));
 ?>
 
 <br />
 
 <div class="panel">
 
-	<?php $view_helper->partial('storage/_submenu', array('available_storage_engines' => $available_storage_engines), $this); ?>
+	<?php 
+	$options = array(
+	    'context' => $this, 
+	    'view_helper' => $view_helper, 
+	    'available_storage_engines' => $available_storage_engines, 
+	    'bp_static_path' => $bp_static_path
+	);
+	Loader::packageElement('storage/_submenu', 'backup_pro', $options); ?>
 
 	<table border="0" cellspacing="0" cellpadding="0" class="table"  width="100%" >
 	<thead>

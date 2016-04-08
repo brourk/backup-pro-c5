@@ -1,6 +1,6 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.');
-$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta), $this);  ?>
+Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper)); ?>
 
 
 
@@ -9,7 +9,7 @@ $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors, 'bac
 <?php endif; ?>  
 
 <?php 
-$view_helper->partial('settings/_settings_nav', array('active_tab' => $section), $this);
+Loader::packageElement('settings/_settings_nav', 'backup_pro', array('active_tab' => $section, 'context' => $this, 'view_helper' => $view_helper));
 $form = Core::make('helper/form');
 $ui = Loader::helper('concrete/ui');
 ?>
@@ -28,7 +28,10 @@ $vars = array(
     'ia_cron_commands' => $ia_cron_commands,
     'backup_cron_commands' => $backup_cron_commands,
     'db_tables' => $db_tables,
-    'rest_api_route_entry' => $rest_api_route_entry
+    'rest_api_route_entry' => $rest_api_route_entry,
+    'view_helper' => $view_helper,
+    'context' => $this,
+    'bp_static_path' => $bp_static_path
 );
 switch($section)
 {
@@ -38,11 +41,11 @@ switch($section)
 	case 'license':
 	case 'api':
 	case 'integrity_agent':
-	    $view_helper->partial('settings/_'.$section, $vars, $this);
+	    Loader::packageElement('settings/_'.$section, 'backup_pro', $vars);
 		break;
 
 	default:
-		$view_helper->partial('settings/_general', $vars, $this);
+	    Loader::packageElement('settings/_general', 'backup_pro', $vars);
 		break;
 }
 

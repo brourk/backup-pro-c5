@@ -1,8 +1,9 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <div id="container" class="row">
-<?php $view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors), $this); ?>
 <?php 
-$view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_backups'), $this);?>
+Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper)); 
+Loader::packageElement('_dashboard_nav', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper, 'active_tab' => 'db_backups'));
+?>
 	
 	<div class="panel">
 		<h3><?php echo $view_helper->m62Lang('restore_db'); ?></h3>
