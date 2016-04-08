@@ -4,7 +4,7 @@
 		<input type="hidden" name="backups[]" value="<?php echo urlencode($view_helper->m62Encode($backup['file_name'])); ?>" />
 	<?php endforeach; ?>
 <?php endif; ?>
-<input type="hidden" value="<?php echo $this->url('/dashboard/backup_pro/manage/update_backup_note'); ?>" name="__note_url" id="__note_url" />
+<input type="hidden" value="<?php echo $context->url('/dashboard/backup_pro/manage/update_backup_note'); ?>" name="__note_url" id="__note_url" />
 <table width="100%" class="data existing_backups table" id="mainTable" border="0" cellpadding="0" cellspacing="0">
 <thead>
 	<tr class="odd">
@@ -84,7 +84,7 @@
             <?php if( $backup['backup_type'] == 'database'): ?> 
             
             <?php if( $backup['can_restore'] ): ?>
-    			<a href="<?php echo $this->url('/dashboard/backup_pro/dashboard/restore?id='.urlencode($view_helper->m62Encode($backup['details_file_name'])).'&type='.$backup['backup_type']); ?>" title="<?php echo $view_helper->m62Lang('restore'); ?>" id="restore_link_<?php echo $count; ?>">
+    			<a href="<?php echo $context->url('/dashboard/backup_pro/dashboard/restore?id='.urlencode($view_helper->m62Encode($backup['details_file_name'])).'&type='.$backup['backup_type']); ?>" title="<?php echo $view_helper->m62Lang('restore'); ?>" id="restore_link_<?php echo $count; ?>">
     				<img src="<?php echo $bp_static_path; ?>/images/restore.png" alt="<?php echo $view_helper->m62Lang('restore'); ?>" class="">
     			</a> 
             <?php else: ?>
@@ -94,7 +94,7 @@
 		<?php endif; ?>
         <?php if( $backup['can_download'] ): 
         $encoded_name = urlencode($view_helper->m62Encode($backup['details_file_name']));
-        $download_url = $this->url('/dashboard/backup_pro/manage/download?id='.$encoded_name.'&type='.$backup['backup_type']);// wp_nonce_url($url_base.'download&noheader=true&id='.$encoded_name.'&type='.$backup['backup_type'], $encoded_name);
+        $download_url = $context->url('/dashboard/backup_pro/manage/download?id='.$encoded_name.'&type='.$backup['backup_type']);// wp_nonce_url($url_base.'download&noheader=true&id='.$encoded_name.'&type='.$backup['backup_type'], $encoded_name);
         ?>
     		<a href="<?php echo $download_url;?>" title="<?php echo $view_helper->m62Lang('download'); ?>" id="download_link_<?php echo $count; ?>">
     			<img src="<?php echo $bp_static_path; ?>/images/download.png" alt="<?php echo $view_helper->m62Lang('download'); ?>" class="">

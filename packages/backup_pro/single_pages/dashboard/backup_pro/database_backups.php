@@ -1,7 +1,6 @@
-<?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
-<?php 
-$view_helper->partial('_includes/_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta), $this);
-$view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_backups'), $this);
+<?php defined('C5_EXECUTE') or die('Access Denied.'); 
+Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
+Loader::packageElement('_dashboard_nav', 'backup_pro', array('active_tab' => 'db_backups', 'context' => $this, 'view_helper' => $view_helper));
 ?>
 
 <div class="panel">
@@ -40,11 +39,18 @@ $view_helper->partial('_includes/_dashboard_nav', array('active_tab' => 'db_back
         <?php 
         $token = Loader::helper('validation/token');
         $token->output('bp3_remove_backups_confirm');
-        
-        $options = array('enable_type' => 'no', 'enable_editable_note' => 'yes', 'enable_actions' => 'yes', 'enable_delete' => 'yes');
-        extract($options);
-        $backups = $backups['database'];
-        include '_includes/_backup_table.php';
+
+        $options = array(
+            'enable_type' => 'no', 
+            'enable_editable_note' => 
+            'yes', 'enable_actions' => 'yes', 
+            'enable_delete' => 'yes', 
+            'backups' => $backups['database'], 
+            'context' => $this,
+            'view_helper' => $view_helper,
+            'bp_static_path' => $bp_static_path
+        );
+        Loader::packageElement('_backup_table', 'backup_pro', $options);
         ?>
             
             <input type="submit" name="_remove_backup_button" id="_remove_backup_button" value="<?php echo t($view_helper->m62Lang('delete_selected')); ?>" class="btn btn-primary pull-right">
