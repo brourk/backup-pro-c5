@@ -7,6 +7,11 @@
  * @version		3.0
  * @filesource 	./cli.config.sample.php
  */
+ 
+if( php_sapi_name() !== 'cli' ){
+    exit;
+}
+
 return array(
     'site_url' => '',
     'site_name' => '',
