@@ -26,11 +26,6 @@
 	
 	<import file="../backup-pro-lib/phing.prepare.xml" />
 	<import file="../backup-pro-lib/phing.cms-files.xml" />
-	<import file="../backup-pro-lib/phing.vendor-no-dev.xml" /> 
-	<import file="../backup-pro-lib/phing.bp-files.xml" /> 
-	<import file="../backup-pro-lib/phing.clean-install.xml" />  
-	<import file="../backup-pro-lib/phing.unit-test.xml" /> 
-	<import file="../backup-pro-lib/phing.archive.xml" /> 
 	
 	<target name="cms-files" depends="prepare">
         <echo msg="(${platform_name}) Copying files to build directory..." />
@@ -48,8 +43,16 @@
 				<exclude name="**/img**"></exclude>
 				<exclude name="**/css/**"></exclude>
 				<exclude name="**/js/**"></exclude>
+				<exclude name="**/js/**"></exclude>
+				<exclude name="**/cli.config.php"></exclude>
 			</fileset>
 		</copy>
-    </target>	
+    </target>
+	
+	<import file="../backup-pro-lib/phing.vendor-no-dev.xml" /> 
+	<import file="../backup-pro-lib/phing.bp-files.xml" /> 
+	<import file="../backup-pro-lib/phing.clean-install.xml" />  
+	<import file="../backup-pro-lib/phing.unit-test.xml" /> 
+	<import file="../backup-pro-lib/phing.archive.xml" /> 
 	
 </project>
