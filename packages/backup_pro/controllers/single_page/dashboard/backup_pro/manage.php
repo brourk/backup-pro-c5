@@ -65,8 +65,8 @@ class Manage extends Abstractcontroller
         }
         else
         {
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__('db_backup_not_found'));
-            $this->platform->redirect( ee('CP/URL', 'addons/settings/backup_pro/index') );
+            $this->redirect('/dashboard/backup_pro/dashboard?backup_not_found=yes');
+            exit;            
         }
     }
     
