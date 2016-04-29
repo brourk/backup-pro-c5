@@ -44,7 +44,7 @@ class Controller extends Package
      * Versoin of Backup Pro 
      * @var string
      */
-    protected $pkgVersion = '3.3.0.3';
+    protected $pkgVersion = '3.3.0.4';
 
     /**
      * (non-PHPdoc)
