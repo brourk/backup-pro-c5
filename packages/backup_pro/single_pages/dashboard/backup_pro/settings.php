@@ -10,8 +10,10 @@ Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors,
 
 <?php 
 Loader::packageElement('settings/_settings_nav', 'backup_pro', array('active_tab' => $section, 'context' => $this, 'view_helper' => $view_helper));
-$form = Core::make('helper/form');
-$ui = Loader::helper('concrete/ui');
+
+$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+$ui = $app->make('helper/concrete/ui/menu');
+$form = $app->make('helper/form');
 ?>
 
 <br />

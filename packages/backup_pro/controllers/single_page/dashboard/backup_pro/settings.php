@@ -60,7 +60,7 @@ class Settings extends Abstractcontroller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             //verify csrf 
-            $val = \Loader::helper('validation/form');
+            $val = $this->app->make('helper/validation/form');
             $val->addRequiredToken('bp3_settings_form');
             
             $data = $_POST;
@@ -155,7 +155,7 @@ class Settings extends Abstractcontroller
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $val = \Loader::helper('validation/form');
+            $val = $this->app->make('helper/validation/form');
             $val->addRequiredToken('bp3_new_storage_form');
             
             $data = $_POST;
@@ -216,7 +216,7 @@ class Settings extends Abstractcontroller
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $val = \Loader::helper('validation/form');
+            $val = $this->app->make('helper/validation/form');
             $val->addRequiredToken('bp3_edit_storage_form');
             
             $data = $_POST;
@@ -274,7 +274,7 @@ class Settings extends Abstractcontroller
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
-            $val = \Loader::helper('validation/form');
+            $val = $this->app->make('helper/validation/form');
             $val->addRequiredToken('bp3_remove_storage_form');
             
             if( $val->test() )

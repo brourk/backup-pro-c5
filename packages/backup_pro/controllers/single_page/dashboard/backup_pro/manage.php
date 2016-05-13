@@ -113,7 +113,7 @@ class Manage extends Abstractcontroller
      */
     public function restore_database()
     {
-        $val = \Loader::helper('validation/form');
+        $val = $this->app->make('helper/validation/form');
         $val->addRequiredToken('bp3_restore_db_confirm');
         if(!$val->test())
         {

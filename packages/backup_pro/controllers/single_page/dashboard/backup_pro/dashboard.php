@@ -145,7 +145,7 @@ class Dashboard extends Abstractcontroller
     public function delete_backups()
     {
         $delete_backups = $this->platform->getPost('backups');
-        $val = \Loader::helper('validation/form');
+        $val = $this->app->make('helper/validation/form');
         $val->addRequiredToken('bp3_remove_backups_confirm');
         
         if( !$delete_backups  )
