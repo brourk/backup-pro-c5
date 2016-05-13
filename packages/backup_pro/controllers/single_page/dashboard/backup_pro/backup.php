@@ -29,7 +29,7 @@ class Backup extends Abstractcontroller
      */
     public function exec_backup_database()
     {
-        $val = $this->app->make('helper/validation/form');
+        $val = $this->getApp()->make('helper/validation/form');
         $val->addRequiredToken('bp3_backup_form');
         
         if ($_SERVER['REQUEST_METHOD'] != 'POST' || !$val->test() ) {
@@ -78,7 +78,7 @@ class Backup extends Abstractcontroller
      */
     public function exec_backup_files()
     {
-        $val = $this->app->make('helper/validation/form');
+        $val = $this->getApp()->make('helper/validation/form');
         $val->addRequiredToken('bp3_backup_form');
         
         if ($_SERVER['REQUEST_METHOD'] != 'POST' || !$val->test() ) {
