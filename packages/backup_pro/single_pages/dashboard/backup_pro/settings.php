@@ -1,6 +1,6 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.');
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper)); ?>
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro'); ?>
 
 
 
@@ -20,7 +20,7 @@ $form = $app->make('helper/form');
 
 <form name="backup_pro_settings" method="POST" action="" class="defaultForm form-horizontal " >
 <?php 
-$token = Loader::helper('validation/token');
+$token = $app->make('helper/validation/token');
 $token->output('bp3_settings_form');
 $vars = array(
     'form_errors' => $form_errors, 
@@ -43,11 +43,11 @@ switch($section)
 	case 'license':
 	case 'api':
 	case 'integrity_agent':
-	    Loader::packageElement('settings/_'.$section, 'backup_pro', $vars);
+	    \View::element('settings/_'.$section, $vars, 'backup_pro');
 		break;
 
 	default:
-	    Loader::packageElement('settings/_general', 'backup_pro', $vars);
+	    \View::element('settings/_general', $vars, 'backup_pro');
 		break;
 }
 

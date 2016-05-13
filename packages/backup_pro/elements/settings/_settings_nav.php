@@ -1,6 +1,8 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.'); 
-$ui = Loader::helper('concrete/ui');
+
+$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+$ui = $app->make('helper/concrete/ui');
 $tabs = array();
 $tabs[] = array($context->action('general'), $view_helper->m62Lang('general_bp_settings_menu'), ($active_tab == 'general' ? true : false));
 $tabs[] = array($context->action('db'), $view_helper->m62Lang('db_bp_settings_menu'), ($active_tab == 'db' ? true : false));
