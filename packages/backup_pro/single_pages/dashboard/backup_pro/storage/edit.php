@@ -17,7 +17,7 @@ echo '<p>'.$engine_desc.'</p>';
 	\View::element('storage/_submenu', $options, 'backup_pro'); ?>
 <br clear="all" />
 <?php if( $form_has_errors ): ?>
-	<div class="alert alert-danger">Woops! Looks like we have an issue...</div>
+	<div class="alert alert-danger"  style="margin-right:20px;"><?php echo t($view_helper->m62Lang('fix_form_errors')); ?></div>
 <?php endif; ?>  
 
 <br />
