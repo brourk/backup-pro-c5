@@ -59,7 +59,6 @@ class Manage extends Abstractcontroller
     
         if($download_file_path && file_exists($download_file_path))
         {
-            //$new_name = $backup->getStorage()->makePrettyFilename($file_name, $type, craft()->config->get('siteName'));
             $this->services['files']->fileDownload($download_file_path);
             exit;
         }

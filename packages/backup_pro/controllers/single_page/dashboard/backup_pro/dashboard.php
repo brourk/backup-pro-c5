@@ -86,7 +86,11 @@ class Dashboard extends Abstractcontroller
         
         if( $this->platform->getPost('delete_backup_xss_fail') == 'yes' ) {
             $this->error = t( "Can't remove the backups due to XSS test failure during the request..." );
-        }   
+        }         
+        
+        if( $this->platform->getPost('backups_delete_fail') == 'yes' ) {
+            $this->error = t( $this->services['lang']->__('backup_delete_failure') );
+        } 
         
         $this->prepView('dashboard', $variables);
     

@@ -112,10 +112,7 @@ class Cron extends Concrete5Front
                                             ->setBackupPath($this->settings['working_directory']);
         $storage = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         $backup->getIntegrity()->setFile($this->services['files'])->setStorage($storage->getStorage());
-		//first, check the backup state
-		//ee()->integrity_agent->monitor_backup_state();
-		
-		//now check the backups and ensure they're all valid
+        
 		$backups = $backup->getAllBackups($this->settings['storage_details']);
 		$type = ($this->settings['last_verification_type'] == 'database' ? 'files' : 'database') ;
 		
@@ -125,6 +122,7 @@ class Cron extends Concrete5Front
 		{
 			$type = 'files';
 		}
+		
 		$total = 0;
 		foreach($backups[$type] AS $details)
 		{
