@@ -1,8 +1,8 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <div id="container" class="row">
 <?php 
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper)); 
-Loader::packageElement('_dashboard_nav', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper, 'active_tab' => 'db_backups'));
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro'); 
+\View::element('_dashboard_nav', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper, 'active_tab' => 'db_backups'), 'backup_pro');
 ?>
 	
 	<div class="panel">
@@ -84,7 +84,7 @@ Loader::packageElement('_dashboard_nav', 'backup_pro', array('bp_errors' => $bp_
             $token->output('bp3_restore_db_confirm');
             ?>		
 			<input type="hidden" name="id" value="<?php echo urlencode($view_helper->m62Encode($backup['details_file_name'])); ?>" />
-			<div class="panel-footer"><button name="submit_button" class="btn btn-primary" value="1" id="_restore_direct" type="submit">
+			<div ><button name="submit_button" class="btn btn-primary" value="1" id="_restore_direct" type="submit">
 				<?php echo $view_helper->m62Lang('restore_db'); ?>
 			</button>
 			</div>			

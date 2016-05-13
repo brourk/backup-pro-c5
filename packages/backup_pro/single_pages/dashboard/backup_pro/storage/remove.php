@@ -1,7 +1,7 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php 
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
-Loader::packageElement('settings/_settings_nav', 'backup_pro', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section));
+\View::element('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
+\View::element('settings/_settings_nav', 'backup_pro', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section));
 $form = Core::make('helper/form');
 $ui = Loader::helper('concrete/ui');
 ?>

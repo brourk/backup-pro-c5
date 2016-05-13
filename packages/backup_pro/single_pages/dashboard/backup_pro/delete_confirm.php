@@ -2,8 +2,8 @@
 <div id="container" class="row">
 
 <?php 
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
-Loader::packageElement('_dashboard_nav', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper, 'active_tab' => 'db_backups'));
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
+\View::element('_dashboard_nav', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper, 'active_tab' => 'db_backups'), 'backup_pro');
 ?>
     <div class="panel">
 		<h3><?php echo $view_helper->m62Lang('delete_backup'); ?> ( <?php echo count($backups); ?> )</h3>
@@ -29,7 +29,7 @@ Loader::packageElement('_dashboard_nav', 'backup_pro', array('bp_errors' => $bp_
 			    'view_helper' => $view_helper,
 			    'bp_static_path' => $bp_static_path
 			);
-			Loader::packageElement('_backup_table', 'backup_pro', $options); ?>
+			\View::element('_backup_table', $options, 'backup_pro'); ?>
 			
 			
 			<div class="panel-footer"><button name="submit_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">

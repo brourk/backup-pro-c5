@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); 
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
-Loader::packageElement('_dashboard_nav', 'backup_pro', array('active_tab' => 'file_backups', 'context' => $this, 'view_helper' => $view_helper));
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
+\View::element('_dashboard_nav', array('active_tab' => 'file_backups', 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
 ?>
 
     <div class="panel">
@@ -46,7 +46,7 @@ Loader::packageElement('_dashboard_nav', 'backup_pro', array('active_tab' => 'fi
             'view_helper' => $view_helper,
             'bp_static_path' => $bp_static_path
         );        
-        Loader::packageElement('_backup_table', 'backup_pro', $options);
+        \View::element('_backup_table', $options, 'backup_pro');
         ?>	
 		<input type="hidden" name="type" id="hidden_backup_type" value="files" />	
 		

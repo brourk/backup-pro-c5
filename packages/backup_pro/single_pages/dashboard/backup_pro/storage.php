@@ -1,7 +1,7 @@
 <?php 
 defined('C5_EXECUTE') or die('Access Denied.');
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
-Loader::packageElement('settings/_settings_nav', 'backup_pro', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section));
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
+\View::element('settings/_settings_nav', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section), 'backup_pro');
 ?>
 
 <br />
@@ -15,7 +15,7 @@ Loader::packageElement('settings/_settings_nav', 'backup_pro', array('context' =
 	    'available_storage_engines' => $available_storage_engines, 
 	    'bp_static_path' => $bp_static_path
 	);
-	Loader::packageElement('storage/_submenu', 'backup_pro', $options); ?>
+	\View::element('storage/_submenu', $options, 'backup_pro'); ?>
 
 	<table border="0" cellspacing="0" cellpadding="0" class="table"  width="100%" >
 	<thead>
