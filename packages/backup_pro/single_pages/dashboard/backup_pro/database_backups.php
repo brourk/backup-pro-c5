@@ -34,10 +34,11 @@
 	<?php else: ?>
 	
 	
-		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post"  />
+		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post">
 		<input type="hidden" name="type" id="hidden_backup_type" value="database" />	
         <?php 
-        $token = Loader::helper('validation/token');
+        $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+        $token = $app->make('helper/validation/token');
         $token->output('bp3_remove_backups_confirm');
 
         $options = array(

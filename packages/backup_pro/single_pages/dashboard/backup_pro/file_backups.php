@@ -34,7 +34,8 @@
 	
 		<form name="remove_backups" action="<?php echo $this->action('delete_backups'); ?>" method="post">
         <?php 
-        $token = Loader::helper('validation/token');
+        $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+        $token = $app->make('helper/validation/token');
         $token->output('bp3_remove_backups_confirm');
         $options = array(
             'enable_type' => 'no',

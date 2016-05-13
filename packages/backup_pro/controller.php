@@ -150,7 +150,6 @@ class Controller extends Package
         \Config::set('backup_pro.partial_path', __DIR__);
         \Config::set('backup_pro.static_assets.url_base', '/packages/backup_pro/assets/');
         
-        
         //setup the static assets
         $al = AssetList::getInstance();
         $al->register('javascript', 'bp3_chosen', 'assets/js/chosen.jquery.js', array(), $this->pkgHandle);

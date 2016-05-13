@@ -21,16 +21,15 @@ echo '<p>'.$engine_desc.'</p>';
 	<div class="alert alert-danger">Woops! Looks like we have an issue...</div>
 <?php endif; ?>  
 
-<?php
-$form = Core::make('helper/form');
-$ui = Loader::helper('concrete/ui');
-?>
-
 <br />
 
 <form name="backup_pro_settings" method="POST" action="" class="defaultForm form-horizontal " >
 <?php 
-$token = Loader::helper('validation/token');
+$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+
+$form = $app->make('helper/form');
+$token = $app->make('helper/validation/token');
+
 $token->output('bp3_new_storage_form');
 $vars = array(
     'form' => $form, 

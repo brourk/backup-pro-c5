@@ -80,7 +80,8 @@
 		
 		<form name="remove_backups" action="<?php echo $this->url('/dashboard/backup_pro/manage/restore_database'); ?>" method="POST"  >
             <?php 
-            $token = Loader::helper('validation/token');
+            $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+            $token = $app->make('helper/validation/token');
             $token->output('bp3_restore_db_confirm');
             ?>		
 			<input type="hidden" name="id" value="<?php echo urlencode($view_helper->m62Encode($backup['details_file_name'])); ?>" />

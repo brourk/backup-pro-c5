@@ -14,7 +14,8 @@
 			<br /><br />
 			<form name="remove_backups" action="<?php echo $this->url('/dashboard/backup_pro/manage/delete_backups'); ?>" method="POST"  >
             <?php 
-            $token = Loader::helper('validation/token');
+            $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+            $token = $app->make('helper/validation/token');
             $token->output('bp3_remove_backups_confirmed');
             ?>			
 			<input type="hidden" value="<?php echo $backup_type; ?>" name="type" />

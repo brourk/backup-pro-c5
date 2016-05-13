@@ -2,8 +2,6 @@
 <?php 
 \View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
 \View::element('settings/_settings_nav', array('context' => $this, 'view_helper' => $view_helper, 'active_tab' => $section), 'backup_pro');
-$form = Core::make('helper/form');
-$ui = Loader::helper('concrete/ui');
 ?>
 <br />
 
@@ -11,7 +9,8 @@ $ui = Loader::helper('concrete/ui');
 
 <form name="new_storage_form" method="POST" action="" class="defaultForm form-horizontal " >
     <?php 
-    $token = Loader::helper('validation/token');
+    $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+    $token = $app->make('helper/validation/token');
     $token->output('bp3_remove_storage_form');
     ?>
 	
