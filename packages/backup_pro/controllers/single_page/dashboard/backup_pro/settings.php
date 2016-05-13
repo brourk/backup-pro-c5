@@ -130,7 +130,28 @@ class Settings extends Abstractcontroller
         $variables['storage_details'] = $this->settings['storage_details'];
         //$variables['menu_data'] = ee()->backup_pro->get_settings_view_menu();
         $variables['section'] = 'storage_locations';
-        $variables['pageTitle'] = $this->services['lang']->__('storage_bp_settings_menu');  
+        $variables['pageTitle'] = $this->services['lang']->__('storage_bp_settings_menu'); 
+        
+        if( $this->platform->getPost('storage_updated') == 'yes' ) {
+            $variables['success'] = $this->services['lang']->__('storage_location_updated');
+        }
+        
+        if( $this->platform->getPost('storage_added') == 'yes' ) {
+            $variables['success'] = $this->services['lang']->__('storage_location_added');
+        }  
+        
+        if( $this->platform->getPost('storage_removed') == 'yes' ) {
+            $variables['success'] = $this->services['lang']->__('storage_location_removed');
+        }  
+        
+        if( $this->platform->getPost('storage_invalid_id') == 'yes' ) {
+            $this->error = t( $this->services['lang']->__('invalid_storage_id') );
+        }
+        
+        if( $this->platform->getPost('storage_min_needed_fail') == 'yes' ) {
+            $this->error = t( $this->services['lang']->__('min_storage_location_needs') );
+        }
+        
         $this->prepView('storage', $variables);     
     }
     

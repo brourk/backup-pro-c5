@@ -12,6 +12,7 @@
 namespace Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro;
 
 use Concrete\Package\BackupPro\Controller\SinglePage\Dashboard\BackupPro\Abstractcontroller;
+use mithra62\BackupPro\Exceptions\BackupException;
 
 /**
  * mithra62 - Concrete5 Package Settings Controller
@@ -66,8 +67,7 @@ class Backup extends Abstractcontroller
         }
         else
         {
-		    $this->redirect('/dashboard/backup_pro/dashboard/database_backups/?backup_fail=yes');
-		    exit;
+		    throw new BackupException( print_r($error->getErrors(), true) );
         }
     
         exit;
@@ -90,9 +90,9 @@ class Backup extends Abstractcontroller
         $error = $this->services['errors'];
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])
-        ->checkBackupDirs($backup->getStorage())
-        ->checkWorkingDirectory($this->settings['working_directory'])
-        ->checkFileBackupLocations($this->settings['backup_file_location']);
+              ->checkBackupDirs($backup->getStorage())
+              ->checkWorkingDirectory($this->settings['working_directory'])
+              ->checkFileBackupLocations($this->settings['backup_file_location']);
         if( $error->totalErrors() == 0 )
         {
             ini_set('memory_limit', -1);
@@ -115,14 +115,7 @@ class Backup extends Abstractcontroller
         }
         else
         {
-            $url = $this->url_base.'file_backups';
-            if( $error->getError() == 'no_backup_file_location' )
-            {
-                $url = $this->url_base.'settings&section=files';
-            }
-    
-            ee()->session->set_flashdata('message_error', $this->services['lang']->__($error->getError()));
-            $this->platform->redirect($url);
+            throw new BackupException( print_r($error->getErrors(), true) );
         }
     }
     
@@ -151,9 +144,7 @@ class Backup extends Abstractcontroller
     
         if(!$proc_url)
         {
-            ee()->session->set_flashdata('message_failure', $this->services['lang']->__('can_not_backup'));
-            $this->platform->redirect($this->url_base.'index');
-            exit;
+            throw new BackupException( $this->services['lang']->__('can_not_backup') );
         }
     
         $vars = array('proc_url' => $proc_url);

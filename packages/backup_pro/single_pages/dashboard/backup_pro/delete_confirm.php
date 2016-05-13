@@ -33,7 +33,7 @@
 			\View::element('_backup_table', $options, 'backup_pro'); ?>
 			
 			
-			<div class="panel-footer"><button name="submit_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
+			<div><button name="submit_button" class="btn btn-primary pull-right" value="1" id="_remove_backup_button" type="submit">
                 <?php echo $view_helper->m62Lang('delete'); ?>
             </button>
 			</div>

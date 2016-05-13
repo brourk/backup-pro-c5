@@ -5,7 +5,7 @@ defined('C5_EXECUTE') or die('Access Denied.');
 
 
 <?php if( $form_has_errors ): ?>
-	<div class="alert alert-danger">Woops! Looks like we have an issue...</div>
+	<div class="alert alert-danger"  style="margin-right:20px;"><?php echo t($view_helper->m62Lang('fix_form_errors')); ?></div>
 <?php endif; ?>  
 
 <?php 

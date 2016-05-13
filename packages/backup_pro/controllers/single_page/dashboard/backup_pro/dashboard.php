@@ -64,22 +64,21 @@ class Dashboard extends Abstractcontroller
             'pageTitle' => $this->services['lang']->__('dashboard')
         );
         
-        if( $this->platform->getPost('backups_not_found') == 'yes' )
-        {
+        if( $this->platform->getPost('backups_not_found') == 'yes' ) {
             $variables['error'] = $this->services['lang']->__('backup_progress_bar_stop');
         }  
         
-        if( $this->platform->getPost('backups_deleted') == 'yes' )
-        {
+        if( $this->platform->getPost('backups_deleted') == 'yes' ) {
             $variables['success'] = $this->services['lang']->__('backups_deleted');
         }  
         
-        if( $this->platform->getPost('db_restored') == 'yes' )
-        {
+        if( $this->platform->getPost('db_restored') == 'yes' ) {
             $variables['success'] = $this->services['lang']->__('database_restored');
         }        
         
-        
+        if( $this->platform->getPost('restore_db_xss_fail') == 'yes' ) {
+            $this->error = t( "Can't restore the database due to XSS test failure during the request..." );
+        }        
         
         $this->prepView('dashboard', $variables);
     
@@ -148,14 +147,12 @@ class Dashboard extends Abstractcontroller
         $val = $this->app->make('helper/validation/form');
         $val->addRequiredToken('bp3_remove_backups_confirm');
         
-        if( !$delete_backups  )
-        {
+        if( !$delete_backups  ) {
 		    $this->redirect('/dashboard/backup_pro/dashboard?backups_not_found=yes');
 		    exit;
         }
         
-        if( !$val->test() )
-        {
+        if( !$val->test() ) {
             $this->redirect('/dashboard/backup_pro/dashboard?token_fail=yes');
             exit;            
         }
