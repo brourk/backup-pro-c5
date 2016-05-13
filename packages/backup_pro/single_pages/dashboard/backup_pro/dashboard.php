@@ -1,7 +1,7 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); 
 
-Loader::packageElement('_errors', 'backup_pro', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper));
-Loader::packageElement('_dashboard_nav', 'backup_pro', array('active_tab' => 'dashboard', 'context' => $this, 'view_helper' => $view_helper));
+\View::element('_errors', array('bp_errors' => $bp_errors, 'backup_meta' => $backup_meta, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
+\View::element('_dashboard_nav', array('active_tab' => 'dashboard', 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
 $space_available_header = $view_helper->m62Lang('total_space_available');
 if($settings['auto_threshold'] != '0')
 {
@@ -100,7 +100,7 @@ if($settings['auto_threshold'] != '0')
 			    'view_helper' => $view_helper,
 			    'bp_static_path' => $bp_static_path			    
             );
-            Loader::packageElement('_backup_table', 'backup_pro', $options);
+            \View::element('_backup_table', $options, 'backup_pro');
 	?>
 	<?php else: ?>
 		<div class="no_backup_found"><?php echo $view_helper->m62Lang('no_backups_exist')?> <a href="<?php echo $this->url('/dashboard/backup_pro/backup_database'); ?>"><?php echo $view_helper->m62Lang('would_you_like_to_backup_database_now')?></a></div>
