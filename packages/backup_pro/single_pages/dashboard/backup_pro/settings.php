@@ -9,7 +9,7 @@ defined('C5_EXECUTE') or die('Access Denied.');
 <?php endif; ?>  
 
 <?php 
-Loader::packageElement('settings/_settings_nav', 'backup_pro', array('active_tab' => $section, 'context' => $this, 'view_helper' => $view_helper));
+\View::element('settings/_settings_nav', array('active_tab' => $section, 'context' => $this, 'view_helper' => $view_helper), 'backup_pro');
 
 $app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
 $ui = $app->make('helper/concrete/ui/menu');
