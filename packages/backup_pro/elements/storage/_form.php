@@ -29,7 +29,7 @@ $vars = array(
     'view_helper' => $view_helper,
 );
 
-Loader::packageElement($_form_template, 'backup_pro', $vars);?>
+\View::element($_form_template, $vars, 'backup_pro');?>
 
 <fieldset>
 <legend><?php echo $view_helper->m62Lang('extras'); ?></legend>
