@@ -29,7 +29,7 @@ class Api extends Concrete5Front
      */
     public function view()
     {
-        $_SERVER['REQUEST_URI'] = '/backup_pro/api'.$this->platform->getPost('bp_method');
+        $_SERVER['REQUEST_URI'] = '/backup_pro/api'.$this->platform->getPost('api_method');
         $this->services['rest']->setPlatform($this->platform)->getServer()->run();
         exit;
     }
