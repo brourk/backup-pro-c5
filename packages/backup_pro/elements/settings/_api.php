@@ -9,7 +9,7 @@
     	<div class="form-group">
     		<label for="rest_api_route_entry" class="control-label col-sm-3"><?php echo t($view_helper->m62Lang('rest_api_route_entry'))?></label>
     		<div class="col-sm-7">
-    			<a href="<?php echo $context->url($rest_api_route_entry);; ?>" target="_blank"><?php echo $context->url($rest_api_route_entry); ?></a>
+    			<a href="<?php echo $context->url($rest_api_route_entry);; ?>" target="_blank" id="rest_api_url_wrap"><?php echo $context->url($rest_api_route_entry); ?></a>
     		</div>
     	</div>
     </div>

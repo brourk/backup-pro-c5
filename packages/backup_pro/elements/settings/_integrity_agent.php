@@ -16,7 +16,7 @@
     		<div class="select_all">0 * * * * * curl <?php echo $context->url($cron['url']); ?></div>
     	</td>
     	<td style="width:50%;">
-    		<a href="<?php echo $context->url($cron['url']); ?>" class="test_cron" rel="<?php echo $key; ?>">
+    		<a href="<?php echo $context->url($cron['url']); ?>" class="test_cron" rel="<?php echo $key; ?>" id="integrity_cmd_<?php echo $key?>">
     			<img src="<?php echo $bp_static_path; ?>/images/test.png" />
     		</a> <img src="<?php echo $bp_static_path; ?>/images/indicator.gif" id="animated_<?php echo $key; ?>" style="display:none" />
     	</td>
